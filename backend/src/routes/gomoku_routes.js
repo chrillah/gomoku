@@ -4,7 +4,6 @@ const gameData = require('./game.json');  // adjust the path if the file is in a
 
 router.get('/create_game', (req, res) => {
     res.json(gameData);
-    
 });
 
 router.get('/add_player', (req, res) => {
@@ -12,6 +11,7 @@ router.get('/add_player', (req, res) => {
 });
 
 router.get('/play', (req, res) => {
+    //res.json({funkar: "yes"})
     res.json(gameData);
 });
 
