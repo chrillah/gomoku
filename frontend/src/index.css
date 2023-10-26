@@ -1,3 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Righteous&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root{
+    --red: #FF2E17;
+    --pink: #FFB9B9;
+    --white: #FFFFFF;
+    --app-font: 'JetBrains Mono', monospace;
+    --display-font: 'Righteous', sans-serif;
+    --player-tile-size: 40px;
+    --board-border-thickness: 1px;
+    --player-border-thickness: 5px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.app-display-title{
+    text-align: center;
+    font-family: var(--display-font);
+    color: var(--red);
+    font-size: 5rem;
+}
+
+.square{
+    background-color: var(--pink);
+    height: var(--player-tile-size);
+    width: var(--player-tile-size);
+    background-position:top left;
+    background-size: 20px 20px;
+    background-image:
+      linear-gradient(to right, var(--red) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--red) 1px, transparent 1px);
+}
+
+.small-square {
+    width: 20px;
+    height: 20px;
+    background-color: var(--pink);
+}
+
+.square-1{
+    border-right: var(--board-border-thickness) solid var(--red);
+    border-bottom: var(--board-border-thickness) solid var(--red);
+}
+
+.square-2{
+    border-left: var(--board-border-thickness) solid var(--red);
+    border-bottom: var(--board-border-thickness) solid var(--red);
+}
+
+.square-3{
+    border-right: var(--board-border-thickness) solid var(--red);
+    border-top: var(--board-border-thickness) solid var(--red);
+}
+
+.square-4{
+    border-left: var(--board-border-thickness) solid var(--red);
+    border-top: var(--board-border-thickness) solid var(--red);
+}
+
+.player{
+    border-radius: 100%;
+    position: absolute;
+    height: 40px;
+    width: 40px;
+}
+
+.red{
+    background-color: var(--red);
+    border: var(--player-border-thickness) solid var(--red);
+}
+
+.pink{
+    background-color: var(--pink);
+    border: var(--player-border-thickness) solid var(--red);
+}
+
+
+
+.tile{
+    position: relative;
+    width: 40px;
+    height: 40px;
+}
+
+.square-wrapper{
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    grid-template-rows: repeat(2, auto);
+}
+
+.gomoku-game-area{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.gomoku-board {
+    cursor:url("./assets/img/player-hand.png"), auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.gomoku-row {
+    display: flex;
+}
+
+.loading{
+    font-family: var(--app-font);
+    color: var(--red);
+    font-size: 2rem;
+    font-weight: bold;
+}
