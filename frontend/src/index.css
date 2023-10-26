@@ -76,6 +76,7 @@ body {
 }
 
 .gomoku-game-area{
+    cursor:url("./assets/img/player-hand.png"), auto;
     display: flex;
     justify-content: center;
     align-items: center;
