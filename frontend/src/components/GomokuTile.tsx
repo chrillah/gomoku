@@ -12,10 +12,10 @@ const GomokuTile: FC<GomokuTileProps> = ({ player }) => {
         <div className="tile">
             <div className={playerClass}></div>
             <div className="square-wrapper">
-                <div className="small-square"></div>
-                <div className="small-square"></div>
-                <div className="small-square"></div>
-                <div className="small-square"></div>
+                <div className="small-square square-1"></div>
+                <div className="small-square square-2"></div>
+                <div className="small-square square-3"></div>
+                <div className="small-square square-4"></div>
             </div>
         </div>
     )

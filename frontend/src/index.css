@@ -10,6 +10,7 @@
     --white: #FFFFFF;
     --app-font: 'JetBrains Mono', monospace;
     --display-font: 'Righteous', sans-serif;
+    --player-tile-size: 40px;
     --board-border-thickness: 1px;
     --player-border-thickness: 5px;
 }
@@ -28,8 +29,8 @@ body {
 
 .square{
     background-color: var(--pink);
-    height: 40px;
-    width: 40px;
+    height: var(--player-tile-size);
+    width: var(--player-tile-size);
     background-position:top left;
     background-size: 20px 20px;
     background-image:
@@ -37,11 +38,30 @@ body {
       linear-gradient(to bottom, var(--red) 1px, transparent 1px);
 }
 
-.small-square{
+.small-square {
     width: 20px;
     height: 20px;
     background-color: var(--pink);
-    border: var(--board-border-thickness) solid var(--red);
+}
+
+.square-1{
+    border-right: var(--board-border-thickness) solid var(--red);
+    border-bottom: var(--board-border-thickness) solid var(--red);
+}
+
+.square-2{
+    border-left: var(--board-border-thickness) solid var(--red);
+    border-bottom: var(--board-border-thickness) solid var(--red);
+}
+
+.square-3{
+    border-right: var(--board-border-thickness) solid var(--red);
+    border-top: var(--board-border-thickness) solid var(--red);
+}
+
+.square-4{
+    border-left: var(--board-border-thickness) solid var(--red);
+    border-top: var(--board-border-thickness) solid var(--red);
 }
 
 .player{
@@ -76,17 +96,24 @@ body {
 }
 
 .gomoku-game-area{
-    cursor:url("./assets/img/player-hand.png"), auto;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .gomoku-board {
+    cursor:url("./assets/img/player-hand.png"), auto;
     display: flex;
     flex-direction: column;
 }
 
 .gomoku-row {
     display: flex;
+}
+
+.loading{
+    font-family: var(--app-font);
+    color: var(--red);
+    font-size: 2rem;
+    font-weight: bold;
 }

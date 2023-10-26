@@ -18,7 +18,7 @@ function GomokuGame() {
 
     return (
         <div className="gomoku-game-area">
-            {boardData ? <GomokuBoard boardData={boardData} /> : <p>Laddar...</p>}
+            {boardData ? <GomokuBoard boardData={boardData} /> : <p className="loading">Wait</p>}
         </div>
     );
 }
