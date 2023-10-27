@@ -5,14 +5,21 @@
 @tailwind utilities;
 
 :root{
+    --app-font: 'JetBrains Mono', monospace;
+    --display-font: 'Righteous', sans-serif;
     --red: #FF2E17;
     --pink: #FFB9B9;
     --white: #FFFFFF;
-    --app-font: 'JetBrains Mono', monospace;
-    --display-font: 'Righteous', sans-serif;
+    --black: #000000;
+    --primary: var(--red);
+    --secondary: var(--pink);
+    --black-player:  var(--red);
+    --white-player: var(--pink);
+    /* RED */
+    --box-shadow-color: 255,0,0,0.4;
     --player-tile-size: 40px;
     --board-border-thickness: 1px;
-    --player-border-thickness: 5px;
+    --player-border-thickness: 4px;
 }
 
 body {
@@ -27,7 +34,7 @@ body {
     font-size: 5rem;
 }
 
-.square{
+/* .square{
     background-color: var(--pink);
     height: var(--player-tile-size);
     width: var(--player-tile-size);
@@ -36,49 +43,55 @@ body {
     background-image:
       linear-gradient(to right, var(--red) 1px, transparent 1px),
       linear-gradient(to bottom, var(--red) 1px, transparent 1px);
-}
+} */
 
 .small-square {
     width: 20px;
     height: 20px;
-    background-color: var(--pink);
 }
 
 .square-1{
-    border-right: var(--board-border-thickness) solid var(--red);
-    border-bottom: var(--board-border-thickness) solid var(--red);
+    border-right: var(--board-border-thickness) solid var(--primary);
+    border-bottom: var(--board-border-thickness) solid var(--primary);
 }
 
 .square-2{
-    border-left: var(--board-border-thickness) solid var(--red);
-    border-bottom: var(--board-border-thickness) solid var(--red);
+    border-left: var(--board-border-thickness) solid var(--primary);
+    border-bottom: var(--board-border-thickness) solid var(--primary);
 }
 
 .square-3{
-    border-right: var(--board-border-thickness) solid var(--red);
-    border-top: var(--board-border-thickness) solid var(--red);
+    border-right: var(--board-border-thickness) solid var(--primary);
+    border-top: var(--board-border-thickness) solid var(--primary);
 }
 
 .square-4{
-    border-left: var(--board-border-thickness) solid var(--red);
-    border-top: var(--board-border-thickness) solid var(--red);
+    border-left: var(--board-border-thickness) solid var(--primary);
+    border-top: var(--board-border-thickness) solid var(--primary);
 }
 
 .player{
     border-radius: 100%;
     position: absolute;
+    z-index: 999;
     height: 40px;
     width: 40px;
+    background-image: url('./assets/img/shine-effect.png');
+    background-position: center top;
+    background-size: contain;
+    box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
+    -moz-box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
 }
 
 .black{
-    background-color: var(--red);
-    border: var(--player-border-thickness) solid var(--red);
+    background-color: var(--black-player);
+    border: var(--player-border-thickness) solid var(--primary);
 }
 
 .white{
-    background-color: var(--pink);
-    border: var(--player-border-thickness) solid var(--red);
+    background-color: var(--white-player);
+    border: var(--player-border-thickness) solid var(--primary);
 }
 
 
@@ -105,6 +118,7 @@ body {
     cursor:url("./assets/img/player-hand.png"), auto;
     display: flex;
     flex-direction: column;
+    background-color: var(--secondary);
 }
 
 .gomoku-row {
@@ -113,7 +127,7 @@ body {
 
 .loading{
     font-family: var(--app-font);
-    color: var(--red);
+    color: var(--primary);
     font-size: 2rem;
     font-weight: bold;
 }
