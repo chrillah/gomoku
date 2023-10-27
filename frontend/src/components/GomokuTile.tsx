@@ -1,12 +1,12 @@
 import { FC } from 'react'
 
 interface GomokuTileProps {
-    player: 'red' | 'pink' | null
+    player: 'black' | 'white' | null
 }
 
 const GomokuTile: FC<GomokuTileProps> = ({ player }) => {
     const playerClass =
-        player === 'red' ? 'red player' : player === 'pink' ? 'pink player' : ''
+        player === 'black' ? 'black player' : player === 'white' ? 'white player' : ''
 
     return (
         <div className="tile">

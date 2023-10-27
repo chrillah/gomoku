@@ -71,12 +71,12 @@ body {
     width: 40px;
 }
 
-.red{
+.black{
     background-color: var(--red);
     border: var(--player-border-thickness) solid var(--red);
 }
 
-.pink{
+.white{
     background-color: var(--pink);
     border: var(--player-border-thickness) solid var(--red);
 }

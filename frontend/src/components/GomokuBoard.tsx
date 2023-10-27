@@ -18,7 +18,7 @@ const GomokuBoard: React.FC<BoardProps> = ({ boardData }) => {
             {tiles.map((row, rowIndex) => (
                 <div key={rowIndex} className="gomoku-row">
                     {row.map((tile, colIndex) => (
-                        <GomokuTile key={colIndex} player={tile !== 0 ? (tile === 1 ? 'red' : 'pink') : null} />
+                        <GomokuTile key={colIndex} player={tile !== 0 ? (tile === 1 ? 'black' : 'white') : null} />
                     ))}
                 </div>
             ))}
