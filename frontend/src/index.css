@@ -77,8 +77,8 @@ body {
     height: 40px;
     width: 40px;
     background-image: url('./assets/img/shine-effect.png');
-    background-position: center top;
-    background-size: contain;
+    background-position: top left;
+    background-size: cover;
     box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
     -webkit-box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
     -moz-box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
