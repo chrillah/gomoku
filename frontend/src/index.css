@@ -4,34 +4,34 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
-    --app-font: 'JetBrains Mono', monospace;
-    --display-font: 'Righteous', sans-serif;
-    --red: #FF2E17;
-    --pink: #FFB9B9;
-    --white: #FFFFFF;
-    --black: #000000;
-    --primary: var(--red);
-    --secondary: var(--pink);
-    --black-player:  var(--red);
-    --white-player: var(--pink);
-    /* RED */
-    --box-shadow-color: 255,0,0,0.4;
-    --player-tile-size: 40px;
-    --board-border-thickness: 1px;
-    --player-border-thickness: 4px;
+:root {
+  --app-font: 'JetBrains Mono', monospace;
+  --display-font: 'Righteous', sans-serif;
+  --red: #ff2e17;
+  --pink: #ffb9b9;
+  --white: #ffffff;
+  --black: #000000;
+  --primary: var(--red);
+  --secondary: var(--pink);
+  --black-player: var(--red);
+  --white-player: var(--pink);
+  /* RED */
+  --box-shadow-color: 255, 0, 0, 0.4;
+  --player-tile-size: 40px;
+  --board-border-thickness: 1px;
+  --player-border-thickness: 4px;
 }
 
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
-.app-display-title{
-    text-align: center;
-    font-family: var(--display-font);
-    color: var(--red);
-    font-size: 5rem;
+.app-display-title {
+  text-align: center;
+  font-family: var(--display-font);
+  color: var(--red);
+  font-size: 5rem;
 }
 
 /* .square{
@@ -46,88 +46,86 @@ body {
 } */
 
 .small-square {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
 
-.square-1{
-    border-right: var(--board-border-thickness) solid var(--primary);
-    border-bottom: var(--board-border-thickness) solid var(--primary);
+.square-1 {
+  border-right: var(--board-border-thickness) solid var(--primary);
+  border-bottom: var(--board-border-thickness) solid var(--primary);
 }
 
-.square-2{
-    border-left: var(--board-border-thickness) solid var(--primary);
-    border-bottom: var(--board-border-thickness) solid var(--primary);
+.square-2 {
+  border-left: var(--board-border-thickness) solid var(--primary);
+  border-bottom: var(--board-border-thickness) solid var(--primary);
 }
 
-.square-3{
-    border-right: var(--board-border-thickness) solid var(--primary);
-    border-top: var(--board-border-thickness) solid var(--primary);
+.square-3 {
+  border-right: var(--board-border-thickness) solid var(--primary);
+  border-top: var(--board-border-thickness) solid var(--primary);
 }
 
-.square-4{
-    border-left: var(--board-border-thickness) solid var(--primary);
-    border-top: var(--board-border-thickness) solid var(--primary);
+.square-4 {
+  border-left: var(--board-border-thickness) solid var(--primary);
+  border-top: var(--board-border-thickness) solid var(--primary);
 }
 
-.player{
-    border-radius: 100%;
-    position: absolute;
-    z-index: 999;
-    height: 40px;
-    width: 40px;
-    background-image: url('./assets/img/shine-effect.png');
-    background-position: top left;
-    background-size: cover;
-    box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
-    -webkit-box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
-    -moz-box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
+.player {
+  border-radius: 100%;
+  position: absolute;
+  z-index: 999;
+  height: 40px;
+  width: 40px;
+  background-image: url('./assets/img/shine-effect.png');
+  background-position: top left;
+  background-size: cover;
+  box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
+  -webkit-box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
+  -moz-box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
 }
 
-.black{
-    background-color: var(--black-player);
-    border: var(--player-border-thickness) solid var(--primary);
+.black {
+  background-color: var(--black-player);
+  border: var(--player-border-thickness) solid var(--primary);
 }
 
-.white{
-    background-color: var(--white-player);
-    border: var(--player-border-thickness) solid var(--primary);
+.white {
+  background-color: var(--white-player);
+  border: var(--player-border-thickness) solid var(--primary);
 }
 
-
-
-.tile{
-    position: relative;
-    width: 40px;
-    height: 40px;
+.tile {
+  position: relative;
+  width: 40px;
+  height: 40px;
 }
 
-.square-wrapper{
-    display: grid;
-    grid-template-columns: repeat(2, auto);
-    grid-template-rows: repeat(2, auto);
+.square-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(2, auto);
 }
 
-.gomoku-game-area{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.gomoku-game-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .gomoku-board {
-    cursor:url("./assets/img/player-hand.png"), auto;
-    display: flex;
-    flex-direction: column;
-    background-color: var(--secondary);
+  cursor: url('./assets/img/player-hand.png'), auto;
+  display: grid;
+  grid-template-columns: repeat(18, 1fr);
+  grid-template-rows: repeat(18, 1fr);
 }
 
 .gomoku-row {
-    display: flex;
+  display: flex;
 }
 
-.loading{
-    font-family: var(--app-font);
-    color: var(--primary);
-    font-size: 2rem;
-    font-weight: bold;
+.loading {
+  font-family: var(--app-font);
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: bold;
 }
