@@ -72,16 +72,25 @@ body {
 
 .player {
   border-radius: 100%;
-  position: absolute;
-  z-index: 999;
-  height: 40px;
-  width: 40px;
+  /*position: absolute;
+  z-index: 999;*/
+  height: 10px;
+  width: 10px;
+  /*
   background-image: url('./assets/img/shine-effect.png');
   background-position: top left;
   background-size: cover;
   box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
   -webkit-box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
   -moz-box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
+  */
+}
+
+.dot {
+  background-color: #bbbbbba5;
+  border-radius: 90%;
+  border: '2px solid black';
+  position: absolute;
 }
 
 .black {
