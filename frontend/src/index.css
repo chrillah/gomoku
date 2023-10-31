@@ -4,19 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 
-:root{
+:root {
     --app-font: 'JetBrains Mono', monospace;
     --display-font: 'Righteous', sans-serif;
-    --red: #FF2E17;
-    --pink: #FFB9B9;
-    --white: #FFFFFF;
+    --red: #ff2e17;
+    --pink: #ffb9b9;
+    --white: #ffffff;
     --black: #000000;
     --primary: var(--red);
     --secondary: var(--pink);
-    --black-player:  var(--red);
+    --black-player: var(--red);
     --white-player: var(--pink);
     /* RED */
-    --box-shadow-color: 255,0,0,0.4;
+    --box-shadow-color: 255, 0, 0, 0.4;
     --player-tile-size: 40px;
     --board-border-thickness: 1px;
     --player-border-thickness: 4px;
@@ -27,7 +27,7 @@ body {
     padding: 0;
 }
 
-.app-display-title{
+.app-display-title {
     text-align: center;
     font-family: var(--display-font);
     color: var(--red);
@@ -50,27 +50,27 @@ body {
     height: 20px;
 }
 
-.square-1{
+.square-1 {
     border-right: var(--board-border-thickness) solid var(--primary);
     border-bottom: var(--board-border-thickness) solid var(--primary);
 }
 
-.square-2{
+.square-2 {
     border-left: var(--board-border-thickness) solid var(--primary);
     border-bottom: var(--board-border-thickness) solid var(--primary);
 }
 
-.square-3{
+.square-3 {
     border-right: var(--board-border-thickness) solid var(--primary);
     border-top: var(--board-border-thickness) solid var(--primary);
 }
 
-.square-4{
+.square-4 {
     border-left: var(--board-border-thickness) solid var(--primary);
     border-top: var(--board-border-thickness) solid var(--primary);
 }
 
-.player{
+.player {
     border-radius: 100%;
     position: absolute;
     z-index: 999;
@@ -84,38 +84,36 @@ body {
     -moz-box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
 }
 
-.black{
+.black {
     background-color: var(--black-player);
     border: var(--player-border-thickness) solid var(--primary);
 }
 
-.white{
+.white {
     background-color: var(--white-player);
     border: var(--player-border-thickness) solid var(--primary);
 }
 
-
-
-.tile{
+.tile {
     position: relative;
     width: 40px;
     height: 40px;
 }
 
-.square-wrapper{
+.square-wrapper {
     display: grid;
     grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(2, auto);
 }
 
-.gomoku-game-area{
+.gomoku-game-area {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .gomoku-board {
-    cursor:url("./assets/img/player-hand.png"), auto;
+    cursor: url('./assets/img/player-hand.png'), auto;
     display: flex;
     flex-direction: column;
     background-color: var(--secondary);
@@ -125,9 +123,36 @@ body {
     display: flex;
 }
 
-.loading{
+.loading {
     font-family: var(--app-font);
     color: var(--primary);
     font-size: 2rem;
     font-weight: bold;
+}
+
+/*----------IGGES*---------*/
+.game-result {
+    font-family: var(--app-font);
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.prompt-btn {
+    border: #ff2e17;
+    border: solid;
+    border-radius: 15%;
+    padding: 0px 20px;
+    margin-top: 15px;
+}
+
+.prompt-btn:hover {
+    background-color: #ff2e17;
+    color: #ffffff;
+    transition-duration: 0.2s;
 }
