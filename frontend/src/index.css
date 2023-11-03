@@ -35,10 +35,14 @@ body {
 }
 
 .app-display-title {
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
     font-family: var(--display-font);
     color: var(--red);
-    font-size: 5rem;
+    font-size: 20vw;
 }
 
 
@@ -50,6 +54,17 @@ body {
     font-size: 3rem;
     padding: 1rem;
     margin-bottom: 1rem;
+}
+
+.start-a-new-game{
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--white);
+    background-size: 40px 40px;
+    background-image:
+      linear-gradient(to right, var(--primary), transparent 3px),
+      linear-gradient(to bottom, var(--primary) 3px, transparent 3px);
 }
 
 /* .square{
@@ -181,10 +196,13 @@ body {
 }
 
 .gomoku-game-area {
+    margin: auto 0;
+    /* position: relative;
+    transform: translate(-50%, 50%);
+    top: 50%;
+    left: 50%; */
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
     align-items: center;
 }
@@ -273,7 +291,7 @@ body {
     transform: translate(-50%, -50%);
     background-color: var(--secondary);
     border: var(--app-border);
-    padding: 5rem;
+    padding: 2rem;
     display: flex;
     flex-direction: column;
     justify-content: center;
