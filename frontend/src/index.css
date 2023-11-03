@@ -109,19 +109,19 @@ body {
 }
 
 .player {
-    border: var(--player-border-thickness) solid var(--primary);
+    /* border: var(--player-border-thickness) solid var(--primary); */
     border-radius: 100%;
     position: absolute;
     z-index: 999;
 
     height: var(--player-tile-size);
     width: var(--player-tile-size);
-    background-image: url('./assets/img/shine-effect.png');
+    background-image: url('./assets/img/shine-effect-2.png');
     background-position: top left;
     background-size: cover;
-    box-shadow: 5px 5px 5px 0px rgba(var(--box-shadow-color));
-    -webkit-box-shadow: 5px 5px 5px 0px rgba(var(--box-shadow-color));
-    -moz-box-shadow: 5px 5px 5px rgba(var(--box-shadow-color));
+    box-shadow: -5px 5px 5px 0px rgba(var(--box-shadow-color));
+    -webkit-box-shadow: -5px 5px 5px 0px rgba(var(--box-shadow-color));
+    -moz-box-shadow: -5px 5px 5px 0px rgba(var(--box-shadow-color));
 }
 .game-player,
 .non-active-game-player{
@@ -129,8 +129,8 @@ body {
     z-index: 999;
     height: calc(var(--player-tile-size) * 2);
     width: calc(var(--player-tile-size) * 2);
-    border: calc(var(--player-border-thickness) * 2) solid var(--primary);
-    background-image: url('./assets/img/shine-effect.png');
+    /* border: calc(var(--player-border-thickness) * 2) solid var(--primary); */
+    background-image: url('./assets/img/shine-effect-2.png');
     background-position: top left;
     background-size: cover;
 }
@@ -155,7 +155,7 @@ body {
     background-color: var(--black-player);
 }
 .non-active-black {
-    opacity: .2;
+    opacity: .1;
 }
 
 .white,
@@ -163,7 +163,7 @@ body {
     background-color: var(--white-player);
 }
 .non-active-white {
-    opacity: .2;
+    opacity: .3;
 }
 
 .tile {
