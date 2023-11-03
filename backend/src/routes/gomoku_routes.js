@@ -22,7 +22,7 @@ let gameState = {
     rows: 16,
     tiles: Array.from({ length: 16 }, () => Array(16).fill(0)), // Representerar en tom 19x19 tavla
     currentPlayer: 1, // Player 1 startar
-    winner: 0 // 0 för ingen vinnare, 1 eller 2 för att representera spelare, -1 för oavgjort
+    //winner: 0 // 0 för ingen vinnare, 1 eller 2 för att representera spelare, -1 för oavgjort
 }
 
 let gomokuWinner = null;
@@ -39,6 +39,15 @@ router.get('/play', (req, res) => {
         //winner: 0 // 0 för ingen vinnare, 1 eller 2 för att representera spelare, -1 för oavgjort
     })
 
+})
+
+router.get('/winner', (req, res)=>{
+    console.log(gomokuWinner)
+    if(gomokuWinner){
+        res.json({gomokuWinner})
+    } else{
+        res.json(null)
+    }
 })
 
 router.post('/make_move', (req, res) => {
@@ -60,10 +69,10 @@ router.post('/make_move', (req, res) => {
         //Kolla efter en vinnare eller oavgjort
         const winner = checkForWinner(gameState.tiles, gameState.minInRow)
         if (winner !== 0) {
-            gameState.winner = winner // Updatera vinnare
-            winners.push(gameState.winner)
+            gomokuWinner = winner // Updatera vinnare
+            winners.push(gomokuWinner)
         } else if (isTie(gameState.tiles)) {
-            gameState.winner = -1
+            gomokuWinner = -1
         } else {
             gameState.currentPlayer = gameState.currentPlayer === 1 ? 2 : 1
         }

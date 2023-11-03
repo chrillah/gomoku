@@ -5,6 +5,7 @@ import GomokuBoard from './GomokuBoard'
 function GomokuGame() {
     const [boardData, setBoardData] = useState(null)
     const [gameResult, setGameResult] = useState<string | null>(null)
+    const [isWinner, setIsWinner] = useState<string | null>(null)
     const [currentPlayer, setCurrentPlayer] = useState<number | null>(null)
 
     useEffect(() => {
@@ -26,22 +27,33 @@ function GomokuGame() {
         axios
             .post('http://localhost:3000/api/gomoku/make_move', { row, col })
             .then((response) => {
+                //getWinner();
                 setBoardData(response.data)
                 setCurrentPlayer(response.data.currentPlayer)
-                console.log('winner is ' + response.data.winner)
-                if (response.data.winner !== 0) {
-                    // setGameResult(
-                    //     response.data.winner === 1
-                    //         ? 'Black player wins!'
-                    //         : 'White player wins!'
-                    // )
-                } else if (response.data.winner === -1) {
-                    setGameResult("It's a tie!")
-                }
+                // console.log('winner is ' + response.data.winner)
+                // setIsWinner(response.data.winner)
+                // if (response.data.winner !== 0) {
+                //     setGameResult(
+                //         response.data.winner === 1
+                //             ? 'Black player wins!'
+                //             : 'White player wins!'
+                //     )
+                // } else if (response.data.winner === -1) {
+                //     setGameResult("It's a tie!")
+                // }
             })
             .catch((error) => {
                 console.error('An error occurred while making a move:', error)
             })
+    }
+
+    const getWinner = () =>{
+        axios.get('http://localhost:3000/api/gomoku/winner').then((response) =>{
+            setIsWinner(response.data)
+        })
+        .catch((error) => {
+            console.error('An error occurred while making a move:', error)
+        })
     }
 
     const resetGame = () => {
@@ -50,8 +62,9 @@ function GomokuGame() {
         // fetchBoardData()
     }
     const handleResetAndFetch = () => {
-        resetGame()
-        fetchBoardData()
+        console.log('ok')
+        // resetGame()
+        //fetchBoardData()
     }
 
     useEffect(() => {
@@ -77,9 +90,9 @@ function GomokuGame() {
 
             {boardData ? (
                 <div>
-                    {gameResult ? (
+                    {isWinner ? (
                         <div className="game-result">
-                            <p>{gameResult}</p>
+                            <p>{isWinner}</p>
                             <button
                                 className="prompt-btn"
                                 onClick={handleResetAndFetch}
