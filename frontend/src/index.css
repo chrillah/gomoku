@@ -249,10 +249,18 @@ body {
 }
 
 .app-button:hover{
+    transform: translateY(10px);
     background-color: rgba(var(--red-shadow));
     box-shadow: 0px -10px 0px 1px rgba(0,0,0,0.75);
     -webkit-box-shadow: 0px -10px 0px 1px rgba(0,0,0,0.75);
     -moz-box-shadow: 0px -10px 0px 1px rgba(0,0,0,0.75);
+}
+
+.app-button:focus{
+    transform: translateY(0px);
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
 }
 
 

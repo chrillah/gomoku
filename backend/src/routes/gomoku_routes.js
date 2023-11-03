@@ -61,6 +61,10 @@ router.get('/winner', (req, res) => {
     }
 })
 
+router.get('/winners',(req, res) =>{
+    res.json(winners);
+})
+
 router.post('/make_move', (req, res) => {
     const { row, col } = req.body
     console.log('make a move')

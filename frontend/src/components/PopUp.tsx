@@ -1,12 +1,21 @@
-import React from 'react'
+import { FC} from 'react';
 
-function PopUp() {
-  return (
-    <div className='pop-up-wrapper'>
-        <h1 className='pop-up-title'>Play gomoku</h1>
-        <button className='app-button'>Click</button>
-    </div>
-  )
+interface PopUpProps {
+  message: string | null;
+  buttonLabel: string | null;
+  onButtonClick: () => void;
 }
 
-export default PopUp
+const PopUp: FC<PopUpProps> = ({ message, onButtonClick, buttonLabel }) => {
+
+  return (
+    <div className='pop-up-wrapper'>
+      <h1 className='pop-up-title'>{message}</h1>
+      <button className='app-button' onClick={() => onButtonClick()}>
+        {buttonLabel}
+      </button>
+    </div>
+  );
+};
+
+export default PopUp;

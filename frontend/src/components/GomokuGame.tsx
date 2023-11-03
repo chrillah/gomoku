@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import GomokuBoard from './GomokuBoard'
+import PopUp from './PopUp'
 
 function GomokuGame() {
     const [boardData, setBoardData] = useState(null)
-    const [gameResult, setGameResult] = useState<string | null>(null)
-    const [isWinner, setIsWinner] = useState<string | null>(null)
+    const [isWinner, setIsWinner] = useState<number | null>(null)
+    const [winners, setWinners] = useState<string | null>(null)
     const [currentPlayer, setCurrentPlayer] = useState<number | null>(null)
 
     useEffect(() => {
@@ -18,6 +19,7 @@ function GomokuGame() {
             .then((response) => {
                 console.log('fetch new board')
                 setBoardData(response.data)
+                setCurrentPlayer(response.data.currentPlayer)
             })
             .catch((error) => {
                 console.error('An error occurred:', error)
@@ -26,27 +28,25 @@ function GomokuGame() {
 
     const makeMove = (row: number, col: number) => {
         getWinner();
+        getAllWinners()
         axios
             .post('http://localhost:3000/api/gomoku/make_move', { row, col })
             .then((response) => {
-                //getWinner();
                 setBoardData(response.data)
                 setCurrentPlayer(response.data.currentPlayer)
-                // console.log('winner is ' + response.data.winner)
-                // setIsWinner(response.data.winner)
-                // if (response.data.winner !== 0) {
-                //     setGameResult(
-                //         response.data.winner === 1
-                //             ? 'Black player wins!'
-                //             : 'White player wins!'
-                //     )
-                // } else if (response.data.winner === -1) {
-                //     setGameResult("It's a tie!")
-                // }
             })
             .catch((error) => {
                 console.error('An error occurred while making a move:', error)
             })
+    }
+
+    const getAllWinners = () =>{
+        axios.get('http://localhost:3000/api/gomoku/winners').then((response) =>{
+            setWinners(response.data)
+        })
+        .catch((error) => {
+            console.error('An error occurred while making a move:', error)
+        })
     }
 
     const getWinner = () =>{
@@ -58,25 +58,24 @@ function GomokuGame() {
         })
     }
 
-    const resetGame = () => {
-        setGameResult(null)
-        setBoardData(null) // Reset boardData to null when resetting the game
-        // fetchBoardData()
-    }
     const handleResetAndFetch = () => {
         console.log('ok')
         console.log('Is winner : '+isWinner)
-        // resetGame()
         setIsWinner(null)
         setCurrentPlayer(null);
         fetchBoardData()
+        onWinners();
     }
 
-    // useEffect(() => {
-    //     if (gameResult === null && boardData === null) {
-    //         fetchBoardData()
-    //     }
-    // }, [gameResult, boardData])
+    function onWinners(){
+        if(winners){
+            for(let i = 0; i < winners.length; i++){
+                console.log(winners[i]);
+            }
+        }
+
+    }
+
 
     return (
         <div className="gomoku-game-area">
@@ -96,15 +95,16 @@ function GomokuGame() {
             {boardData ? (
                 <div>
                     {isWinner ? (
-                        <div className="game-result">
-                            <p>{isWinner}</p>
-                            <button
-                                className="prompt-btn"
-                                onClick={handleResetAndFetch}
-                            >
-                                OK
-                            </button>
-                        </div>
+                        // <div className="game-result">
+                        //     <p>{isWinner}</p>
+                        //     <button
+                        //         className="prompt-btn"
+                        //         onClick={handleResetAndFetch}
+                        //     >
+                        //         OK
+                        //     </button>
+                        // </div>
+                        <PopUp message={isWinner === 1 ? "Red won" : "Pink won"} onButtonClick={handleResetAndFetch} buttonLabel={"Ok..."} />
                     ) : (
                         <GomokuBoard
                             boardData={boardData}
