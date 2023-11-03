@@ -17,6 +17,7 @@ const GomokuBoard: React.FC<BoardProps> = ({ boardData, makeMove }) => {
 
     // const testArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
 
+
     // MIN VARIANT
     const handleTileClick = (row: number, col: number) => {
         if (tiles[row][col] === 0) {
@@ -26,6 +27,7 @@ const GomokuBoard: React.FC<BoardProps> = ({ boardData, makeMove }) => {
 
     return (
         <div className="gomoku-board">
+
 
             {/* <div className="gomoku-row">
             {testArray.map((i, key) => (
@@ -69,6 +71,7 @@ const GomokuBoard: React.FC<BoardProps> = ({ boardData, makeMove }) => {
                         <div className="small-square square-1"></div>
                         <div className="small-square square-3"></div>
                     </div> */}
+
                 </div>
             ))}
         </div>

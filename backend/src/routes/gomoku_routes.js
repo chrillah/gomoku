@@ -16,7 +16,6 @@ const router = express.Router()
 
 /* --------------------------- MIN VARIANT -------------------------------- */
 
-
 // Store the current state of the game, initially empty
 let gameState = {
     minInRow: 5,
@@ -28,6 +27,7 @@ let gameState = {
 }
 
 router.get('/play', (req, res) => {
+
     res.json({
         minInRow: 5,
         cols: 16,
@@ -36,6 +36,7 @@ router.get('/play', (req, res) => {
         currentPlayer: 1, // Player 1 startar
         winner: 0 // 0 för ingen vinnare, 1 eller 2 för att representera spelare, -1 för oavgjort
     })
+
 })
 
 router.post('/make_move', (req, res) => {
@@ -66,7 +67,9 @@ router.post('/make_move', (req, res) => {
             // Växla till den andra spelarens tur
             gameState.currentPlayer = gameState.currentPlayer === 1 ? 2 : 1
         }
+
         console.log(gameState)
+
         res.json(gameState)
     } else {
         res.json({ message: 'Invalid move. Please try again.' })

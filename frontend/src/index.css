@@ -16,6 +16,7 @@
     --black-player: var(--red);
     --white-player: var(--pink);
 
+
     /* RED */
     --box-shadow-color: 255, 0, 0, 0.4;
     --red-shadow: 255, 0, 0, 0.2;
@@ -25,6 +26,7 @@
     --player-border-thickness: 4px;
     --app-border-radius: 50px;
     --app-border: 8px solid var(--primary);
+
 }
 
 body {
@@ -38,6 +40,7 @@ body {
     color: var(--red);
     font-size: 5rem;
 }
+
 
 .pop-up-title{
     font-weight: bold;
@@ -60,6 +63,7 @@ body {
       linear-gradient(to bottom, var(--red) 1px, transparent 1px);
 } */
 
+
 .empty-row{
     background-color: aquamarine;
 }
@@ -81,6 +85,7 @@ body {
 
 .small-square {
     height: calc(var(--player-tile-size) / 2);
+
 }
 
 .square-1 {
@@ -107,6 +112,7 @@ body {
     border-radius: 100%;
     position: absolute;
     z-index: 999;
+
     height: var(--player-tile-size);
     width: var(--player-tile-size);
     background-image: url('./assets/img/shine-effect.png');
@@ -122,6 +128,7 @@ body {
     z-index: 999;
     height: var(--player-tile-size);
     width: var(--player-tile-size);
+
     background-image: url('./assets/img/shine-effect.png');
     background-position: top left;
     background-size: cover;
@@ -142,8 +149,10 @@ body {
 
 .tile {
     position: relative;
+
     width: var(--player-tile-size);
     height: var(--player-tile-size);
+
 }
 
 .square-wrapper {
@@ -154,7 +163,9 @@ body {
 
 .gomoku-game-area {
     display: flex;
+
     flex-direction: column;
+
     justify-content: center;
     align-items: center;
 }
@@ -168,6 +179,7 @@ body {
 
 .gomoku-row {
     width: 100%;
+
     display: flex;
 }
 
@@ -240,3 +252,4 @@ body {
     justify-content: center;
     align-items: center;
 }
+

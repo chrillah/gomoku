@@ -7,6 +7,7 @@ function GomokuGame() {
     const [gameResult, setGameResult] = useState<string | null>(null)
     const [currentPlayer, setCurrentPlayer] = useState<string | null>(null)
 
+
     useEffect(() => {
         fetchBoardData()
     }, [])
@@ -15,7 +16,9 @@ function GomokuGame() {
         axios
             .get('http://localhost:3000/api/gomoku/play')
             .then((response) => {
+
                 console.log('game result ' + gameResult)
+
                 console.log('Received data after reset:', response.data) // Log the response data
                 setBoardData(response.data)
             })
@@ -31,6 +34,7 @@ function GomokuGame() {
                 console.log(response.data.winner)
                 setBoardData(response.data)
                 setCurrentPlayer(response.data.currentPlayer)
+
 
                 if (response.data.winner !== 0) {
                     setGameResult(
@@ -105,6 +109,7 @@ function GomokuGame() {
 
     return (
         <div className="gomoku-game-area">
+
             {/* <h1>{currentPlayer === 1 ? 'red' : 'pink'}</h1> */}
             <div className="player-turns-wrapper">
                 {currentPlayer === 1 ? (
@@ -118,6 +123,7 @@ function GomokuGame() {
                     <div className="white game-player"></div>
                 )}
             </div>
+
             {boardData ? (
                 <div>
                     {gameResult ? (
@@ -238,7 +244,6 @@ export default GomokuGame
 //     </>
 //   )
 // }
-
 
 
 // export default GomokuGame
