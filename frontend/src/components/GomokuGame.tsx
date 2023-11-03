@@ -17,7 +17,7 @@ function GomokuGame() {
         axios
             .get('http://localhost:3000/api/gomoku/play')
             .then((response) => {
-                console.log('fetch new board')
+                // console.log('fetch new board')
                 setBoardData(response.data)
                 setCurrentPlayer(response.data.currentPlayer)
             })
@@ -27,7 +27,7 @@ function GomokuGame() {
     }
 
     const makeMove = (row: number, col: number) => {
-        getWinner();
+        getWinner()
         getAllWinners()
         axios
             .post('http://localhost:3000/api/gomoku/make_move', { row, col })
@@ -40,84 +40,106 @@ function GomokuGame() {
             })
     }
 
-    const getAllWinners = () =>{
-        axios.get('http://localhost:3000/api/gomoku/winners').then((response) =>{
-            setWinners(response.data)
-        })
-        .catch((error) => {
-            console.error('An error occurred while making a move:', error)
-        })
+    const getAllWinners = () => {
+        axios
+            .get('http://localhost:3000/api/gomoku/winners')
+            .then((response) => {
+                setWinners(response.data)
+            })
+            .catch((error) => {
+                console.error('An error occurred while making a move:', error)
+            })
     }
 
-    const getWinner = () =>{
-        axios.get('http://localhost:3000/api/gomoku/winner').then((response) =>{
-            setIsWinner(response.data)
-        })
-        .catch((error) => {
-            console.error('An error occurred while making a move:', error)
-        })
+    const getWinner = () => {
+        axios
+            .get('http://localhost:3000/api/gomoku/winner')
+            .then((response) => {
+                setIsWinner(response.data)
+            })
+            .catch((error) => {
+                console.error('An error occurred while making a move:', error)
+            })
     }
 
     const handleResetAndFetch = () => {
         console.log('ok')
-        console.log('Is winner : '+isWinner)
+        console.log('Is winner : ' + isWinner)
         setIsWinner(null)
-        setCurrentPlayer(null);
+        setCurrentPlayer(null)
         fetchBoardData()
-        onWinners();
+        onWinners()
     }
 
-    function onWinners(){
-        if(winners){
-            for(let i = 0; i < winners.length; i++){
-                console.log(winners[i]);
+    function onWinners() {
+        if (winners) {
+            for (let i = 0; i <= winners.length; i++) {
+                console.log(winners[i])
             }
         }
-
     }
 
-
     return (
-<div className="game-wrapper">
-<div className="gomoku-game-area">
-            <div className="player-turns-wrapper">
-                {currentPlayer === 1 ? (
-                    <div className="black game-player"></div>
+        <div className="game-wrapper">
+            {/* tennis */}
+            {/* {currentPlayer === 1 ? (
+                <div className="black game-player"></div>
+            ) : (
+                <div className="non-active-black non-active-game-player"></div>
+            )} */}
+
+            <div className="gomoku-game-area">
+                <div className="player-turns-wrapper">
+                    {currentPlayer === 1 ? (
+                        <div className="black game-player"></div>
+                    ) : (
+                        <div className="non-active-black non-active-game-player"></div>
+                    )}
+                    {currentPlayer === 2 ? (
+                        <div className="white game-player"></div>
+                    ) : (
+                        <div className="non-active-white non-active-game-player"></div>
+                    )}
+                </div>
+
+                {boardData ? (
+                    <div>
+                        {isWinner ? (
+                            // <div className="game-result">
+                            //     <p>{isWinner}</p>
+                            //     <button
+                            //         className="prompt-btn"
+                            //         onClick={handleResetAndFetch}
+                            //     >
+                            //         OK
+                            //     </button>
+                            // </div>
+                            <PopUp
+                                message={
+                                    isWinner === 1 ? 'Red won' : 'Pink won'
+                                }
+                                onButtonClick={handleResetAndFetch}
+                                buttonLabel={'Ok'}
+                            />
+                        ) : (
+                            <GomokuBoard
+                                boardData={boardData}
+                                makeMove={makeMove}
+                            />
+                        )}
+                    </div>
                 ) : (
-                    <div className="non-active-black non-active-game-player"></div>
-                )}
-                {currentPlayer === 2 ? (
-                    <div className="white game-player"></div>
-                ) : (
-                    <div className="non-active-white non-active-game-player"></div>
+                    <p className="loading">Wait</p>
                 )}
             </div>
 
-            {boardData ? (
-                <div>
-                    {isWinner ? (
-                        // <div className="game-result">
-                        //     <p>{isWinner}</p>
-                        //     <button
-                        //         className="prompt-btn"
-                        //         onClick={handleResetAndFetch}
-                        //     >
-                        //         OK
-                        //     </button>
-                        // </div>
-                        <PopUp message={isWinner === 1 ? "Red won" : "Pink won"} onButtonClick={handleResetAndFetch} buttonLabel={"Ok..."} />
-                    ) : (
-                        <GomokuBoard
-                            boardData={boardData}
-                            makeMove={makeMove}
-                        />
-                    )}
-                </div>
+            {/* tennis */}
+            {/* {currentPlayer === 2 ? (
+                <div className="white game-player"></div>
             ) : (
-                <p className="loading">Wait</p>
-            )}
+                <div className="non-active-white non-active-game-player"></div>
+            )} */}
         </div>
-</div>
     )
 }
 

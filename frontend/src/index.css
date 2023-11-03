@@ -163,6 +163,8 @@ body {
 }
 .game-player,
 .non-active-game-player{
+    /* margin-top: 4rem; */
+    margin-bottom: auto;
     border-radius: 100%;
     z-index: 999;
     height: calc(var(--player-tile-size) * 2);
@@ -187,6 +189,13 @@ body {
     padding: 1rem;
     margin-bottom: 2rem;
 }
+
+
+/* @media (min-width:900px) {
+    .player-turns-wrapper{
+        display: none;
+    }
+} */
 
 .black,
 .non-active-black {
@@ -219,8 +228,17 @@ body {
 }
 
 .game-wrapper{
+
+    /* tennis */
+    /* gap: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+
+
     margin-top: 15vh;
 }
+
 .gomoku-game-area {
     margin: auto 0;
     /* position: relative;
@@ -235,8 +253,8 @@ body {
 
 .gomoku-board {
     /* cursor: url('./assets/img/player-hand.png'), auto; */
-    display: flex;
-    flex-direction: column;
+    /* display: flex;
+    flex-direction: column; */
     /* background-color: var(--secondary); */
 }
 
