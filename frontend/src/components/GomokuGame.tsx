@@ -78,7 +78,8 @@ function GomokuGame() {
 
 
     return (
-        <div className="gomoku-game-area">
+<div className="game-wrapper">
+<div className="gomoku-game-area">
             <div className="player-turns-wrapper">
                 {currentPlayer === 1 ? (
                     <div className="black game-player"></div>
@@ -116,6 +117,7 @@ function GomokuGame() {
                 <p className="loading">Wait</p>
             )}
         </div>
+</div>
     )
 }
 
