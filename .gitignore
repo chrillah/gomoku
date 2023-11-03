@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+.firebaserc
+firebase.json
+frontend/public/404.html
+
+frontend/public/index.html
