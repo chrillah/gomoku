@@ -27,7 +27,16 @@ let gameState = {
 }
 
 router.get('/play', (req, res) => {
-    res.json(gameState)
+
+    res.json({
+        minInRow: 5,
+        cols: 16,
+        rows: 16,
+        tiles: Array.from({ length: 16 }, () => Array(16).fill(0)), // Representerar en tom 19x19 tavla
+        currentPlayer: 1, // Player 1 startar
+        winner: 0 // 0 för ingen vinnare, 1 eller 2 för att representera spelare, -1 för oavgjort
+    })
+
 })
 
 router.post('/make_move', (req, res) => {
@@ -58,6 +67,8 @@ router.post('/make_move', (req, res) => {
             // Växla till den andra spelarens tur
             gameState.currentPlayer = gameState.currentPlayer === 1 ? 2 : 1
         }
+
+        console.log(gameState)
 
         res.json(gameState)
     } else {

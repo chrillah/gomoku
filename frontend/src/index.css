@@ -15,11 +15,18 @@
     --secondary: var(--pink);
     --black-player: var(--red);
     --white-player: var(--pink);
+
+
     /* RED */
     --box-shadow-color: 255, 0, 0, 0.4;
-    --player-tile-size: 40px;
+    --red-shadow: 255, 0, 0, 0.2;
+
+    --player-tile-size: 50px;
     --board-border-thickness: 1px;
     --player-border-thickness: 4px;
+    --app-border-radius: 50px;
+    --app-border: 8px solid var(--primary);
+
 }
 
 body {
@@ -34,6 +41,17 @@ body {
     font-size: 5rem;
 }
 
+
+.pop-up-title{
+    font-weight: bold;
+    text-align: center;
+    font-family: var(--app-font);
+    color: var(--red);
+    font-size: 3rem;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
 /* .square{
     background-color: var(--pink);
     height: var(--player-tile-size);
@@ -45,9 +63,29 @@ body {
       linear-gradient(to bottom, var(--red) 1px, transparent 1px);
 } */
 
-.small-square {
-    width: 20px;
+
+.empty-row{
+    background-color: aquamarine;
+}
+
+.test-square{
+    background-color: #ff2e17;
     height: 20px;
+}
+
+.half-square-1{
+    width: calc(var(--player-tile-size) / 4);
+    height: calc(var(--player-tile-size) / 2);
+}
+
+.half-square-2{
+    width: calc(var(--player-tile-size) / 2);
+    height: calc(var(--player-tile-size) / 4);
+}
+
+.small-square {
+    height: calc(var(--player-tile-size) / 2);
+
 }
 
 .square-1 {
@@ -74,8 +112,23 @@ body {
     border-radius: 100%;
     position: absolute;
     z-index: 999;
-    height: 40px;
-    width: 40px;
+
+    height: var(--player-tile-size);
+    width: var(--player-tile-size);
+    background-image: url('./assets/img/shine-effect.png');
+    background-position: top left;
+    background-size: cover;
+    box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
+    -webkit-box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
+    -moz-box-shadow: 2px 2px 2px 0px rgba(var(--box-shadow-color));
+}
+
+.game-player {
+    border-radius: 100%;
+    z-index: 999;
+    height: var(--player-tile-size);
+    width: var(--player-tile-size);
+
     background-image: url('./assets/img/shine-effect.png');
     background-position: top left;
     background-size: cover;
@@ -96,8 +149,10 @@ body {
 
 .tile {
     position: relative;
-    width: 40px;
-    height: 40px;
+
+    width: var(--player-tile-size);
+    height: var(--player-tile-size);
+
 }
 
 .square-wrapper {
@@ -108,18 +163,23 @@ body {
 
 .gomoku-game-area {
     display: flex;
+
+    flex-direction: column;
+
     justify-content: center;
     align-items: center;
 }
 
 .gomoku-board {
-    cursor: url('./assets/img/player-hand.png'), auto;
+    /* cursor: url('./assets/img/player-hand.png'), auto; */
     display: flex;
     flex-direction: column;
-    background-color: var(--secondary);
+    /* background-color: var(--secondary); */
 }
 
 .gomoku-row {
+    width: 100%;
+
     display: flex;
 }
 
@@ -156,3 +216,40 @@ body {
     color: #ffffff;
     transition-duration: 0.2s;
 }
+
+.app-button{
+    cursor: pointer;
+    font-family: var(--app-font);
+    color: var(--primary);
+    font-size: 2rem;
+    font-weight: bolder;
+    border: 10px solid var(--primary);
+    border-radius: 100px;
+    padding: 1rem 2rem;
+    transition: all ease-in-out 200ms;
+}
+
+.app-button:hover{
+    background-color: rgba(var(--red-shadow));
+    box-shadow: 0px -10px 0px 1px rgba(0,0,0,0.75);
+    -webkit-box-shadow: 0px -10px 0px 1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px -10px 0px 1px rgba(0,0,0,0.75);
+}
+
+
+/* PoppUp */
+.pop-up-wrapper{
+    border-radius: var(--app-border-radius);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--secondary);
+    border: var(--app-border);
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
