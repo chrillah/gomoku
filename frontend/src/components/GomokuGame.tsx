@@ -16,6 +16,7 @@ function GomokuGame() {
         axios
             .get('http://localhost:3000/api/gomoku/play')
             .then((response) => {
+                console.log('fetch new board')
                 setBoardData(response.data)
             })
             .catch((error) => {
@@ -24,6 +25,7 @@ function GomokuGame() {
     }
 
     const makeMove = (row: number, col: number) => {
+        getWinner();
         axios
             .post('http://localhost:3000/api/gomoku/make_move', { row, col })
             .then((response) => {
@@ -63,15 +65,18 @@ function GomokuGame() {
     }
     const handleResetAndFetch = () => {
         console.log('ok')
+        console.log('Is winner : '+isWinner)
         // resetGame()
-        //fetchBoardData()
+        setIsWinner(null)
+        setCurrentPlayer(null);
+        fetchBoardData()
     }
 
-    useEffect(() => {
-        if (gameResult === null && boardData === null) {
-            fetchBoardData()
-        }
-    }, [gameResult, boardData])
+    // useEffect(() => {
+    //     if (gameResult === null && boardData === null) {
+    //         fetchBoardData()
+    //     }
+    // }, [gameResult, boardData])
 
     return (
         <div className="gomoku-game-area">

@@ -14,46 +14,57 @@ const router = express.Router()
 //     res.json(gameData);
 // });
 
-
 // Store the current state of the game, initially empty
 let gameState = {
     minInRow: 5,
     cols: 16,
     rows: 16,
     tiles: Array.from({ length: 16 }, () => Array(16).fill(0)), // Representerar en tom 19x19 tavla
-    currentPlayer: 1, // Player 1 startar
+    currentPlayer: 1 // Player 1 startar
     //winner: 0 // 0 för ingen vinnare, 1 eller 2 för att representera spelare, -1 för oavgjort
 }
 
-let gomokuWinner = null;
-let winners = [];
+let gomokuWinner = null
+let winners = []
 
 router.get('/play', (req, res) => {
-
     res.json({
         minInRow: 5,
         cols: 16,
         rows: 16,
         tiles: Array.from({ length: 16 }, () => Array(16).fill(0)), // Representerar en tom 19x19 tavla
-        currentPlayer: 1, // Player 1 startar
+        currentPlayer: 1 // Player 1 startar
         //winner: 0 // 0 för ingen vinnare, 1 eller 2 för att representera spelare, -1 för oavgjort
     })
-
 })
 
-router.get('/winner', (req, res)=>{
-    console.log(gomokuWinner)
-    if(gomokuWinner){
-        res.json({gomokuWinner})
-    } else{
+router.get('/winner', (req, res) => {
+    console.log('numbers of ' + winners.length)
+
+    for (let i = 0; i < winners.length; i++) {
+        console.log('winners index ' + winners[i])
+    }
+    if (gomokuWinner) {
+        res.json(gomokuWinner)
+        winners.push(gomokuWinner)
+        gomokuWinner = null
+        gameState = {
+            minInRow: 5,
+            cols: 16,
+            rows: 16,
+            tiles: Array.from({ length: 16 }, () => Array(16).fill(0)), // Representerar en tom 19x19 tavla
+            currentPlayer: 1 // Player 1 startar
+            //winner: 0 // 0 för ingen vinnare, 1 eller 2 för att representera spelare, -1 för oavgjort
+        };
+    } else {
         res.json(null)
     }
 })
 
 router.post('/make_move', (req, res) => {
     const { row, col } = req.body
-
-
+    console.log('make a move')
+    console.log(gameState)
     // Kontrollera om de angivna koordinaterna finns inom brädet och att den valda brickan är tom
     if (
         row >= 0 &&
@@ -61,7 +72,6 @@ router.post('/make_move', (req, res) => {
         col >= 0 &&
         col < gameState.cols &&
         gameState.tiles[row][col] === 0
-
     ) {
         checkForWinner(gameState.tiles, gameState.minInRow)
         gameState.tiles[row][col] = gameState.currentPlayer
@@ -70,7 +80,6 @@ router.post('/make_move', (req, res) => {
         const winner = checkForWinner(gameState.tiles, gameState.minInRow)
         if (winner !== 0) {
             gomokuWinner = winner // Updatera vinnare
-            winners.push(gomokuWinner)
         } else if (isTie(gameState.tiles)) {
             gomokuWinner = -1
         } else {
@@ -80,18 +89,9 @@ router.post('/make_move', (req, res) => {
     } else {
         res.json({ message: 'Invalid move. Please try again.' })
     }
-
 })
 
-router.post('/winner', (req, res)=>{
-
-})
-
-console.log('numbers of '+ winners.length)
-
-for(let i = 0; i < winners.length; i++){
-    console.log('winners index '+ winners[i])
-}
+router.post('/winner', (req, res) => {})
 
 // Funktion för att kontrollera om det finns en vinnare
 function checkForWinner(board, minInRow) {
