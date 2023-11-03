@@ -107,7 +107,7 @@ function GomokuGame() {
     return (
         <div className="gomoku-game-area">
             {/* <h1 className='app-display-title'>{currentPlayer === 1 ? 'red' : 'pink'}</h1> */}
-{/* 
+{/*
             {currentPlayer === 0 ? (
                                 <div className="player-turns-wrapper">
                                 <div className="black game-player"></div>
@@ -120,12 +120,12 @@ function GomokuGame() {
                 {currentPlayer === 1 ? (
                     <div className="black game-player"></div>
                 ) : (
-                    <div></div>
+                    <div className="non-active-black non-active-game-player"></div>
                 )}
                 {currentPlayer === 2 ? (
                     <div className="white game-player"></div>
                 ) : (
-                    <div></div>
+                    <div className="non-active-white non-active-game-player"></div>
                 )}
             </div>
 
