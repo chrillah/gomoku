@@ -14,7 +14,6 @@ const router = express.Router()
 //     res.json(gameData);
 // });
 
-/* --------------------------- MIN VARIANT -------------------------------- */
 
 // Store the current state of the game, initially empty
 let gameState = {
@@ -26,6 +25,9 @@ let gameState = {
     winner: 0 // 0 för ingen vinnare, 1 eller 2 för att representera spelare, -1 för oavgjort
 }
 
+let gomokuWinner = null;
+let winners = [];
+
 router.get('/play', (req, res) => {
 
     res.json({
@@ -34,7 +36,7 @@ router.get('/play', (req, res) => {
         rows: 16,
         tiles: Array.from({ length: 16 }, () => Array(16).fill(0)), // Representerar en tom 19x19 tavla
         currentPlayer: 1, // Player 1 startar
-        winner: 0 // 0 för ingen vinnare, 1 eller 2 för att representera spelare, -1 för oavgjort
+        //winner: 0 // 0 för ingen vinnare, 1 eller 2 för att representera spelare, -1 för oavgjort
     })
 
 })
@@ -42,10 +44,6 @@ router.get('/play', (req, res) => {
 router.post('/make_move', (req, res) => {
     const { row, col } = req.body
 
-    // Kontrollera om spelet redan är vunnet eller om det är oavgjort
-    if (gameState.winner !== 0) {
-        return res.json({ message: 'The game is already finished.' })
-    }
 
     // Kontrollera om de angivna koordinaterna finns inom brädet och att den valda brickan är tom
     if (
@@ -54,27 +52,37 @@ router.post('/make_move', (req, res) => {
         col >= 0 &&
         col < gameState.cols &&
         gameState.tiles[row][col] === 0
+
     ) {
-        gameState.tiles[row][col] = gameState.currentPlayer // Placera den nuvarande spelarens pjäs
+        checkForWinner(gameState.tiles, gameState.minInRow)
+        gameState.tiles[row][col] = gameState.currentPlayer
 
         //Kolla efter en vinnare eller oavgjort
         const winner = checkForWinner(gameState.tiles, gameState.minInRow)
         if (winner !== 0) {
             gameState.winner = winner // Updatera vinnare
+            winners.push(gameState.winner)
         } else if (isTie(gameState.tiles)) {
-            gameState.winner = -1 // Updatera för oavgjort
+            gameState.winner = -1
         } else {
-            // Växla till den andra spelarens tur
             gameState.currentPlayer = gameState.currentPlayer === 1 ? 2 : 1
         }
-
-        console.log(gameState)
-
         res.json(gameState)
     } else {
         res.json({ message: 'Invalid move. Please try again.' })
     }
+
 })
+
+router.post('/winner', (req, res)=>{
+
+})
+
+console.log('numbers of '+ winners.length)
+
+for(let i = 0; i < winners.length; i++){
+    console.log('winners index '+ winners[i])
+}
 
 // Funktion för att kontrollera om det finns en vinnare
 function checkForWinner(board, minInRow) {
