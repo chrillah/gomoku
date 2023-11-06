@@ -187,12 +187,24 @@ body {
 }
 
 .player-turns-wrapper{
-    max-width: 800px;
+    max-width: 480px;
     display: flex;
     justify-content: space-between;
     width: 100%;
     padding-bottom: 1rem;
     margin-bottom: 2rem;
+}
+
+@media (min-width: 1000px) {
+    .player-turns-wrapper{
+        max-width: 800px;
+    }
+}
+
+@media (min-width: 1400px) {
+    .player-turns-wrapper{
+        max-width: 1300px;
+    }
 }
 
 .number-of-wins{
