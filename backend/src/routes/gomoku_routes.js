@@ -39,14 +39,22 @@ router.get('/play', (req, res) => {
 })
 
 router.get('/winner', (req, res) => {
-    console.log('numbers of ' + winners.length)
-
-    for (let i = 0; i < winners.length; i++) {
-        console.log('winners index ' + winners[i])
-    }
     if (gomokuWinner) {
         res.json(gomokuWinner)
         winners.push(gomokuWinner)
+
+        // console.log('Antal spel '+ winners.length)
+
+
+        // for(let i = 0; i < winners.length; i++){
+        //     if(winners[i] === 1){
+        //         console.log('Winner 1 '+ winners[i])
+        //     }
+
+        //     if(winners[i] === 2){
+        //         console.log('Winner 2 '+ winners[i])
+        //     }
+        // }
         gomokuWinner = null
         gameState = {
             minInRow: 5,
@@ -67,8 +75,6 @@ router.get('/winners',(req, res) =>{
 
 router.post('/make_move', (req, res) => {
     const { row, col } = req.body
-    console.log('make a move')
-    console.log(gameState)
     // Kontrollera om de angivna koordinaterna finns inom brädet och att den valda brickan är tom
     if (
         row >= 0 &&
@@ -145,15 +151,14 @@ function checkForWinner(board, minInRow) {
 
 // Funktion för att kontrollera om spelet är oavgjort
 function isTie(board) {
-    // Logik för att kontrollera om tavlan är full utan en vinnare för att förklara oavgjort
     for (let row of board) {
         for (let cell of row) {
             if (cell === 0) {
-                return false // Det finns en tom cell, spelet är inte oavgjort
+                return false
             }
         }
     }
-    return true // Tavlan är full, och ingen vinnare utses, det är oavgjort
+    return true
 }
 
 module.exports = router
