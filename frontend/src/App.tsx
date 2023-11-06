@@ -12,7 +12,7 @@ function App() {
     return (
         <>
             {letsPlay ? (
-                <GomokuGame />
+                <GomokuGame onQuitGame={() => setLetsPlay(false)} />
             ) : (
                 <div className='start-a-new-game'>
                     <h1 className="app-display-title">Gomuko</h1>
