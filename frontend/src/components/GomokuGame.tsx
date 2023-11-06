@@ -134,8 +134,11 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
                         {isWinner ? (
                             <PopUpChoice
                                 message={
-                                    (isWinner === 1 ? 'Red won' : 'Pink won') +
-                                    ', play again?'
+                                    isWinner === -1
+                                        ? "It's a Tie! Play again?"
+                                        : isWinner === 1
+                                        ? 'Red won'
+                                        : 'Pink won' + ', play again?'
                                 }
                                 buttonLabel1={'Yes'}
                                 buttonLabel2={'No'}
