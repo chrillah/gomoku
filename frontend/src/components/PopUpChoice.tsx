@@ -18,12 +18,15 @@ const PopUpChoice: FC<PopUpChoiceProps> = ({
     return (
         <div className="pop-up-wrapper">
             <h1 className="pop-up-message">{message}</h1>
-            <button className="app-button" onClick={() => onButtonClick1()}>
-                {buttonLabel1}
-            </button>
-            <button className="app-button" onClick={() => onButtonClick2()}>
-                {buttonLabel2}
-            </button>
+
+            <div className="button-container">
+                <button className="app-button" onClick={() => onButtonClick1()}>
+                    {buttonLabel1}
+                </button>
+                <button className="app-button" onClick={() => onButtonClick2()}>
+                    {buttonLabel2}
+                </button>
+            </div>
         </div>
     )
 }

@@ -308,6 +308,12 @@ body {
     transition-duration: 0.2s;
 }
 
+.button-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
 .app-button{
     cursor: pointer;
     font-family: var(--app-font);
@@ -317,6 +323,7 @@ body {
     border-radius: 100px;
     padding: 1rem 0;
     transition: all ease-in-out 200ms;
+    background-color: var(--secondary);
 }
 
 .app-button:hover{
@@ -345,7 +352,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--secondary);
-    border: var(--app-border);
+    /* border: var(--app-border); */
     padding: 1rem 2rem 5rem 2rem;
     display: grid;
 

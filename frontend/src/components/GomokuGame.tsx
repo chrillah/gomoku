@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react'
+import { FC } from 'react'
 import axios from 'axios'
 import GomokuBoard from './GomokuBoard'
-import PopUp from './PopUp'
+import PopUpChoice from './PopUpChoice'
 
-function GomokuGame() {
+
+interface GomokuGameProps{
+    onQuitGame: () => void
+}
+
+const GomokuGame:FC<GomokuGameProps> = ({onQuitGame}) => {
     const [boardData, setBoardData] = useState(null)
     const [isWinner, setIsWinner] = useState<number | null>(null)
     const [winners, setWinners] = useState<string | null>(null)
@@ -79,6 +85,10 @@ function GomokuGame() {
         }
     }
 
+    // function handleQuitGame(){
+    //     console.log('Quit')
+    // }
+
     return (
         <div className="game-wrapper">
             {/* tennis */}
@@ -114,13 +124,14 @@ function GomokuGame() {
                             //         OK
                             //     </button>
                             // </div>
-                            <PopUp
-                                message={
-                                    isWinner === 1 ? 'Red won' : 'Pink won'
-                                }
-                                onButtonClick={handleResetAndFetch}
-                                buttonLabel={'Ok'}
-                            />
+                            <PopUpChoice
+                            message={
+                                (isWinner === 1 ? 'Red won' : 'Pink won') + ', play again?'
+                            }
+                            buttonLabel1={"Yes"}
+                            buttonLabel2={"No"}
+                            onButtonClick1={() => handleResetAndFetch()}
+                            onButtonClick2={()=> onQuitGame()} />
                         ) : (
                             <GomokuBoard
                                 boardData={boardData}
