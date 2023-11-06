@@ -70,14 +70,21 @@ body {
     }
 }
 
-
+.pop-up-message,
 .pop-up-title{
     text-align: center;
     font-family: var(--app-font);
     color: var(--primary);
-    font-size: 3rem;
     padding: 1rem;
     margin-top: 1rem;
+}
+
+.pop-up-title{
+    font-size: 3rem;
+}
+
+.pop-up-message{
+    font-size: 2rem;
 }
 
 .start-a-new-game{
@@ -189,7 +196,7 @@ body {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    padding: 1rem;
+    padding-bottom: 1rem;
     margin-bottom: 2rem;
 }
 

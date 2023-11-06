@@ -27,8 +27,6 @@ function GomokuGame() {
     }
 
     const makeMove = (row: number, col: number) => {
-        getWinner()
-        getAllWinners()
         axios
             .post('http://localhost:3000/api/gomoku/make_move', { row, col })
             .then((response) => {
@@ -38,6 +36,8 @@ function GomokuGame() {
             .catch((error) => {
                 console.error('An error occurred while making a move:', error)
             })
+            getWinner()
+            getAllWinners()
     }
 
     const getAllWinners = () => {
