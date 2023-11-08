@@ -178,6 +178,9 @@ body {
 }
 .game-player,
 .non-active-game-player{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-bottom: auto;
     border-radius: 100%;
     z-index: 999;
@@ -187,12 +190,14 @@ body {
     background-image: url('./assets/img/shine-effect-2.png');
     background-position: top left;
     background-size: cover;
+    transition: box-shadow ease-out 100ms;
 }
 
+/* .non-active-game-player h1{
+    color: black;
+} */
+
 .game-player {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     box-shadow: 0px 0px 65px 15px rgba(var(--box-shadow-color));
     -webkit-box-shadow: 0px 0px 65px 15px rgba(var(--box-shadow-color));
     -moz-box-shadow: 0px 0px 65px 15px rgba(var(--box-shadow-color));
@@ -243,6 +248,7 @@ body {
 }
 .non-active-black {
     opacity: .1;
+    transition: opacity 200ms ease-in-out;
 }
 
 .white,
