@@ -20,8 +20,8 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
 
     const writeToDatabase = () => {
         console.log(db)
-        set(ref(db, '/test'), {
-            test: 'Hej världen'
+        set(ref(db, '/hest'), {
+            yest: 'Hej världen'
         })
     }
 
@@ -115,32 +115,36 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
 
             <div className="gomoku-game-area">
                 <div className="player-turns-wrapper">
-                    {currentPlayer === 1 ? (
-                        <div className="black game-player">
-                            {blackNumberOfWins === 0 ? (
-                                <></>
-                            ) : (
-                                <h1 className="number-of-wins">
-                                    {blackNumberOfWins}
-                                </h1>
-                            )}
-                        </div>
-                    ) : (
-                        <div className="non-active-black non-active-game-player"></div>
-                    )}
-                    {currentPlayer === 2 ? (
-                        <div className="white game-player">
-                            {whiteNumberOfWins === 0 ? (
-                                <></>
-                            ) : (
-                                <h1 className="number-of-wins">
-                                    {whiteNumberOfWins}
-                                </h1>
-                            )}
-                        </div>
-                    ) : (
-                        <div className="non-active-white non-active-game-player"></div>
-                    )}
+                    <div
+                        className={
+                            currentPlayer === 1
+                                ? 'black game-player'
+                                : 'non-active-black non-active-game-player'
+                        }
+                    >
+                        {blackNumberOfWins === 0 ? (
+                            <></>
+                        ) : (
+                            <h1 className="number-of-wins">
+                                {blackNumberOfWins}
+                            </h1>
+                        )}
+                    </div>
+                    <div
+                        className={
+                            currentPlayer === 2
+                                ? 'white game-player'
+                                : 'non-active-white non-active-game-player'
+                        }
+                    >
+                        {whiteNumberOfWins === 0 ? (
+                            <></>
+                        ) : (
+                            <h1 className="number-of-wins">
+                                {whiteNumberOfWins}
+                            </h1>
+                        )}
+                    </div>
                 </div>
 
                 {boardData ? (
