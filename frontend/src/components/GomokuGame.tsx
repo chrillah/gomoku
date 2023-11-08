@@ -19,6 +19,7 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
     const [whiteNumberOfWins, setWhiteNumberOfWins] = useState([])
 
     const writeToDatabase = () => {
+        
         console.log(db)
         set(ref(db, '/hest'), {
             yest: 'Hej världen'
