@@ -4,7 +4,7 @@ let gameState = {
     minInRow: 5,
     cols: 16,
     rows: 16,
-    tiles: Array.from({ length: 16 }, () => Array(16).fill(0)), // Representerar en tom 19x19 tavla
+    tiles: Array.from({ length: 16 }, () => Array(16).fill(0)),
     currentPlayer: 1
 }
 
@@ -16,7 +16,7 @@ router.get('/play', (req, res) => {
         minInRow: 5,
         cols: 16,
         rows: 16,
-        tiles: Array.from({ length: this.cols }, () => Array(this.rows).fill(0)),
+        tiles: Array.from({ length: 16 }, () => Array(16).fill(0)),
         currentPlayer: 1
     })
 })
