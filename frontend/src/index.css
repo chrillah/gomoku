@@ -16,7 +16,6 @@
     --black-player: var(--red);
     --white-player: var(--pink);
 
-
     /* RED */
     --box-shadow-color: 255, 0, 0, 0.4;
     --red-shadow: 255, 0, 0, 0.2;
@@ -26,7 +25,6 @@
     --player-border-thickness: 4px;
     --app-border-radius: 50px;
     --app-border: 1px solid var(--primary);
-
 }
 
 body {
@@ -37,20 +35,20 @@ body {
 }
 
 @media (min-width: 400px) {
-    body{
-        --player-tile-size: 20px
+    body {
+        --player-tile-size: 20px;
     }
 }
 
 @media (min-width: 500px) {
-    body{
-        --player-tile-size: 30px
+    body {
+        --player-tile-size: 30px;
     }
 }
 
 @media (min-width: 1000px) {
-    body{
-        --player-tile-size: 40px
+    body {
+        --player-tile-size: 40px;
     }
 }
 
@@ -69,33 +67,32 @@ body {
     word-wrap: break-word;
 }
 
-
 @media (min-width: 588px) {
-    .app-display-title{
+    .app-display-title {
         text-align: center;
     }
 }
 
 @media (min-width: 940px) {
-    .app-display-title{
+    .app-display-title {
         font-size: 15rem;
     }
 }
 
 @media (min-width: 1200px) {
-    .app-display-title{
+    .app-display-title {
         font-size: 20rem;
     }
 }
 
 @media (min-width: 1600px) {
-    .app-display-title{
+    .app-display-title {
         font-size: 25rem;
     }
 }
 
 .pop-up-message,
-.pop-up-title{
+.pop-up-title {
     text-align: center;
     font-family: var(--app-font);
     color: var(--primary);
@@ -103,21 +100,20 @@ body {
     margin-top: 1rem;
 }
 
-.pop-up-title{
+.pop-up-title {
     font-size: 3rem;
 }
 
-.pop-up-message{
+.pop-up-message {
     font-size: 2rem;
 }
 
-.start-a-new-game{
+.start-a-new-game {
     min-height: 100vh;
     background-color: var(--white);
     background-size: 100px 100px;
-    background-image:
-      linear-gradient(to right, var(--primary), transparent 2px),
-      linear-gradient(to bottom, var(--primary) 2px, transparent 2px);
+    background-image: linear-gradient(to right, var(--primary), transparent 2px),
+        linear-gradient(to bottom, var(--primary) 2px, transparent 2px);
 }
 
 /* .square{
@@ -131,14 +127,11 @@ body {
       linear-gradient(to bottom, var(--red) 1px, transparent 1px);
 } */
 
-
-.square-wrapper{
-
+.square-wrapper {
 }
 
 .small-square {
     height: calc(var(--player-tile-size) / 2);
-
 }
 
 .square-1 {
@@ -176,8 +169,33 @@ body {
     -webkit-box-shadow: -5px 5px 5px 0px rgba(var(--box-shadow-color));
     -moz-box-shadow: -5px 5px 5px 0px rgba(var(--box-shadow-color));
 }
+
+.player:hover {
+}
+
+.no-player{
+    border-radius: 100%;
+    position: absolute;
+    z-index: 9;
+
+    height: var(--player-tile-size);
+    width: var(--player-tile-size);
+    background-image: url('./assets/img/shine-effect-2.png');
+    background-position: top left;
+    background-size: cover;
+    box-shadow: -5px 5px 5px 0px rgba(var(--box-shadow-color));
+    -webkit-box-shadow: -5px 5px 5px 0px rgba(var(--box-shadow-color));
+    -moz-box-shadow: -5px 5px 5px 0px rgba(var(--box-shadow-color));
+    opacity: 0;
+    transition: opacity ease-in-out 200ms;
+}
+
+.no-player:hover{
+    opacity: 1;
+}
+
 .game-player,
-.non-active-game-player{
+.non-active-game-player {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -203,7 +221,7 @@ body {
     -moz-box-shadow: 0px 0px 65px 15px rgba(var(--box-shadow-color));
 }
 
-.player-turns-wrapper{
+.player-turns-wrapper {
     max-width: 240px;
     display: flex;
     justify-content: space-between;
@@ -213,32 +231,31 @@ body {
 }
 
 @media (min-width: 400px) {
-    .player-turns-wrapper{
+    .player-turns-wrapper {
         max-width: 320px;
     }
 }
 
 @media (min-width: 500px) {
-    .player-turns-wrapper{
+    .player-turns-wrapper {
         max-width: 480px;
     }
 }
 
 @media (min-width: 1000px) {
-    .player-turns-wrapper{
+    .player-turns-wrapper {
         max-width: 650px;
     }
 }
 
-
-.number-of-wins{
+.number-of-wins {
     font-family: var(--app-font);
     font-weight: 900;
     color: var(--white);
     font-size: 2rem;
 }
 
-.red{
+.red {
     color: var(--primary);
 }
 
@@ -247,7 +264,7 @@ body {
     background-color: var(--black-player);
 }
 .non-active-black {
-    opacity: .1;
+    opacity: 0.1;
     transition: opacity 200ms ease-in-out;
 }
 
@@ -256,7 +273,7 @@ body {
     background-color: var(--white-player);
 }
 .non-active-white {
-    opacity: .3;
+    opacity: 0.3;
 }
 
 .tile {
@@ -264,8 +281,11 @@ body {
 
     width: var(--player-tile-size);
     height: var(--player-tile-size);
-
 }
+
+/* .tile:hover{
+    background-color: #000000;
+} */
 
 .square-wrapper {
     display: grid;
@@ -273,12 +293,12 @@ body {
     grid-template-rows: repeat(2, auto);
 }
 
-.game-background{
+.game-background {
     min-height: 100vh;
     background-color: #000000;
 }
 
-.game-wrapper{
+.game-wrapper {
     /* tennis */
     /* gap: 3rem;
     display: flex;
@@ -339,13 +359,13 @@ body {
     transition-duration: 0.2s;
 }
 
-.button-container{
+.button-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
 }
 
-.app-button{
+.app-button {
     cursor: pointer;
     font-family: var(--app-font);
     color: var(--primary);
@@ -357,7 +377,7 @@ body {
     background-color: var(--secondary);
 }
 
-.app-button:hover{
+.app-button:hover {
     transform: translateY(10px);
     /* background-color: rgba(var(--red-shadow)); */
     box-shadow: 0px -10px 0px 1px var(--primary);
@@ -365,16 +385,15 @@ body {
     -moz-box-shadow: 0px -10px 0px 1px var(--primary);
 }
 
-.app-button:focus{
+.app-button:focus {
     transform: translateY(0px);
-    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.75);
 }
 
-
 /* PoppUp */
-.pop-up-wrapper{
+.pop-up-wrapper {
     width: 100%;
     max-width: 400px;
     border-radius: var(--app-border-radius);
