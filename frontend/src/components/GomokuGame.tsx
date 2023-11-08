@@ -3,6 +3,8 @@ import { FC } from 'react'
 import axios from 'axios'
 import GomokuBoard from './GomokuBoard'
 import PopUpChoice from './PopUpChoice'
+import { db } from '../firebase'
+import { set, ref } from 'firebase/database'
 
 interface GomokuGameProps {
     onQuitGame: () => void
@@ -15,6 +17,13 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
     const [currentPlayer, setCurrentPlayer] = useState<number | null>(null)
     const [blackNumberOfWins, setBlackNumberOfWins] = useState([])
     const [whiteNumberOfWins, setWhiteNumberOfWins] = useState([])
+
+    const writeToDatabase = () => {
+        console.log(db)
+        set(ref(db, '/test'), {
+            test: 'Hej världen'
+        })
+    }
 
     useEffect(() => {
         fetchBoardData()
@@ -34,6 +43,7 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
     }
 
     const makeMove = (row: number, col: number) => {
+        writeToDatabase()
         axios
             .post('http://localhost:3000/api/gomoku/make_move', { row, col })
             .then((response) => {
@@ -41,7 +51,11 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
                 setCurrentPlayer(response.data.currentPlayer)
             })
             .catch((error) => {
-                console.error('An error occurred while making a move:', error)
+                console.error(
+                    'Är det här det händer? ' +
+                        'An error occurred while making a move:',
+                    error
+                )
             })
         getWinner()
         getAllWinners()
@@ -94,10 +108,10 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
         <div className="game-wrapper">
             {/* tennis */}
             {/* {currentPlayer === 1 ? (
-                <div className="black game-player"></div>
-            ) : (
-                <div className="non-active-black non-active-game-player"></div>
-            )} */}
+        <div className="black game-player"></div>
+    ) : (
+        <div className="non-active-black non-active-game-player"></div>
+    )} */}
 
             <div className="gomoku-game-area">
                 <div className="player-turns-wrapper">
@@ -146,11 +160,12 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
                                 onButtonClick2={() => onQuitGame()}
                             />
                         ) : (
-                            <GomokuBoard
-                                boardData={boardData}
-                                makeMove={makeMove}
-                            />
+                            <></>
                         )}
+                        <GomokuBoard
+                            boardData={boardData}
+                            makeMove={makeMove}
+                        />
                     </div>
                 ) : (
                     <p className="loading">Wait</p>
@@ -159,10 +174,10 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
 
             {/* tennis */}
             {/* {currentPlayer === 2 ? (
-                <div className="white game-player"></div>
-            ) : (
-                <div className="non-active-white non-active-game-player"></div>
-            )} */}
+        <div className="white game-player"></div>
+    ) : (
+        <div className="non-active-white non-active-game-player"></div>
+    )} */}
         </div>
     )
 }
