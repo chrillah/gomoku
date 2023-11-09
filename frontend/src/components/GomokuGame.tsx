@@ -1,106 +1,53 @@
 import { useEffect, useState } from 'react'
 import { FC } from 'react'
-import axios from 'axios'
 import GomokuBoard from './GomokuBoard'
 import PopUpChoice from './PopUpChoice'
-import { playGame, makeMove, GameState, handleWinner } from '../GameLogic'
+import {
+    playGame,
+    makeMove,
+    GameState
+} from '../GameLogic'
 
 interface GomokuGameProps {
     onQuitGame: () => void
 }
 
 const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
-    const [boardData, setBoardData] = useState <GameState | null>()
+    const [boardData, setBoardData] = useState<GameState | null>()
     const [isWinner, setIsWinner] = useState<number | null>(null)
-    const [winners, setWinners] = useState([])
+    const [winners, setWinners] = useState<number[]>([])
     const [currentPlayer, setCurrentPlayer] = useState<number | null>(null)
-    const [blackNumberOfWins, setBlackNumberOfWins] = useState([])
-    const [whiteNumberOfWins, setWhiteNumberOfWins] = useState([])
-
+    const [blackNumberOfWins, setBlackNumberOfWins] = useState<number>(0)
+    const [whiteNumberOfWins, setWhiteNumberOfWins] = useState<number>(0)
 
     useEffect(() => {
         fetchBoardData()
     }, [])
 
-
-
-
-    // const fetchBoardData = async () => {
-    //     const data = await playGame();
-    //     setBoardData(data);
-    //     setCurrentPlayer(data.currentPlayer)
-    // }
-
-    const fetchBoardData = () => {
-        axios
-            .get('http://localhost:3000/api/gomoku/play')
-            .then((response) => {
-                setBoardData(response.data)
-                setCurrentPlayer(response.data.currentPlayer)
-            })
-            .catch((error) => {
-                console.error('An error occurred:', error)
-            })
+    const fetchBoardData = async () => {
+        try {
+            const data = await playGame()
+            setBoardData(data)
+            setCurrentPlayer(data.currentPlayer)
+        } catch (error) {
+            console.log('No board ' + error)
+        }
     }
-
-    // const playerMove = async (row: number, col: number) => {
-        // const data = await makeMove(row, col);
-        // setBoardData(data);
-        // setCurrentPlayer(data.currentPlayer)
-
-
-    //     axios
-    //         .post('http://localhost:3000/api/gomoku/make_move', { row, col })
-    //         .then((response) => {
-    //             setBoardData(response.data)
-    //             setCurrentPlayer(response.data.currentPlayer)
-    //         })
-    //         .catch((error) => {
-    //             console.error(
-    //                 'Är det här det händer? ' +
-    //                     'An error occurred while making a move:',
-    //                 error
-    //             )
-    //         })
-    //     getWinner()
-    //     getAllWinners()
-    // }
 
     const playerMove = async (row: number, col: number) => {
         try {
-          const response = await axios.post('http://localhost:3000/api/gomoku/make_move', { row, col });
-          setBoardData(response.data);
-          setCurrentPlayer(response.data.currentPlayer);
-          getWinner();
-          getAllWinners();
+            const data = await makeMove(row, col)
+            setBoardData(data)
+            setCurrentPlayer(data.currentPlayer)
+            if(data.gomokuWinner){
+                console.log(data.gomokuWinner)
+                setIsWinner(data.gomokuWinner)
+                winners.push(data.gomokuWinner)
+                setWinners([...winners])
+            }
         } catch (error) {
-          console.error('An error occurred while making a move:', error);
+            console.log('No update ' + error)
         }
-      };
-
-
-    const getAllWinners = () => {
-        axios
-            .get('http://localhost:3000/api/gomoku/winners')
-            .then((response) => {
-                setWinners(response.data)
-            })
-            .catch((error) => {
-                console.error('An error occurred while making a move:', error)
-            })
-    }
-
-    const getWinner = async () => {
-        // const data = handleWinner()
-        // setIsWinner(await data)
-        axios
-            .get('http://localhost:3000/api/gomoku/winner')
-            .then((response) => {
-                setIsWinner(response.data)
-            })
-            .catch((error) => {
-                console.error('An error occurred while making a move:', error)
-            })
     }
 
     const handleResetAndFetch = () => {
@@ -159,7 +106,6 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
                         )}
                     </div>
                 </div>
-                {/* <button onClick={()=> fetchBoardData()}>FETCH</button> */}
                 {boardData ? (
                     <div>
                         {isWinner ? (
@@ -187,7 +133,6 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
                 ) : (
                     <p className="loading">Wait</p>
                 )}
-
             </div>
         </div>
     )
