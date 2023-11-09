@@ -18,50 +18,50 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
     const [whiteNumberOfWins, setWhiteNumberOfWins] = useState([])
 
 
-    // useEffect(() => {
-    //     fetchBoardData()
-    // }, [])
+    useEffect(() => {
+        fetchBoardData()
+    }, [])
 
 
 
 
-    const fetchBoardData = async () => {
-        const data = await playGame();
-        setBoardData(data);
-        setCurrentPlayer(data.currentPlayer)
-    }
-
-    // const fetchBoardData = () => {
-    //     axios
-    //         .get('http://localhost:3000/api/gomoku/play')
-    //         .then((response) => {
-    //             setBoardData(response.data)
-    //             setCurrentPlayer(response.data.currentPlayer)
-    //         })
-    //         .catch((error) => {
-    //             console.error('An error occurred:', error)
-    //         })
+    // const fetchBoardData = async () => {
+    //     const data = await playGame();
+    //     setBoardData(data);
+    //     setCurrentPlayer(data.currentPlayer)
     // }
 
+    const fetchBoardData = () => {
+        axios
+            .get('http://localhost:3000/api/gomoku/play')
+            .then((response) => {
+                setBoardData(response.data)
+                setCurrentPlayer(response.data.currentPlayer)
+            })
+            .catch((error) => {
+                console.error('An error occurred:', error)
+            })
+    }
+
     const playerMove = async (row: number, col: number) => {
-        const data = await makeMove(row, col);
-        setBoardData(data);
-        setCurrentPlayer(data.currentPlayer)
+        // const data = await makeMove(row, col);
+        // setBoardData(data);
+        // setCurrentPlayer(data.currentPlayer)
 
 
-        // axios
-        //     .post('http://localhost:3000/api/gomoku/make_move', { row, col })
-        //     .then((response) => {
-        //         setBoardData(response.data)
-        //         setCurrentPlayer(response.data.currentPlayer)
-        //     })
-        //     .catch((error) => {
-        //         console.error(
-        //             'Är det här det händer? ' +
-        //                 'An error occurred while making a move:',
-        //             error
-        //         )
-        //     })
+        axios
+            .post('http://localhost:3000/api/gomoku/make_move', { row, col })
+            .then((response) => {
+                setBoardData(response.data)
+                setCurrentPlayer(response.data.currentPlayer)
+            })
+            .catch((error) => {
+                console.error(
+                    'Är det här det händer? ' +
+                        'An error occurred while making a move:',
+                    error
+                )
+            })
         getWinner()
         getAllWinners()
     }
@@ -78,16 +78,16 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
     }
 
     const getWinner = async () => {
-        const data = handleWinner()
-        setIsWinner(await data)
-        // axios
-        //     .get('http://localhost:3000/api/gomoku/winner')
-        //     .then((response) => {
-        //         setIsWinner(response.data)
-        //     })
-        //     .catch((error) => {
-        //         console.error('An error occurred while making a move:', error)
-        //     })
+        // const data = handleWinner()
+        // setIsWinner(await data)
+        axios
+            .get('http://localhost:3000/api/gomoku/winner')
+            .then((response) => {
+                setIsWinner(response.data)
+            })
+            .catch((error) => {
+                console.error('An error occurred while making a move:', error)
+            })
     }
 
     const handleResetAndFetch = () => {
@@ -146,7 +146,7 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
                         )}
                     </div>
                 </div>
-                <button onClick={()=> fetchBoardData()}>FETCH</button>
+                {/* <button onClick={()=> fetchBoardData()}>FETCH</button> */}
                 {boardData ? (
                     <div>
                         {isWinner ? (
