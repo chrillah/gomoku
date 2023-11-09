@@ -343,13 +343,14 @@ body {
 }
 
 .color-button-container{
+    padding-top: 2rem;
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(4, auto);
     height: 10px;
     margin: 0 auto;
     width: 100%;
-    max-width: 150px;
+    /* max-width: 150px; */
 }
 
 .app-button {

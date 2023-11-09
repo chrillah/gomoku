@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import GomokuGame from './components/GomokuGame'
-import PopUp from './components/PopUp'
 
 function App() {
     const [letsPlay, setLetsPlay] = useState(false)
@@ -22,54 +21,55 @@ function App() {
                 />
             ) : (
                 <div className="start-a-new-game">
-                    <h1 className="app-display-title">Gomuko</h1>
-                    <div className="top-wrapper"></div>
-                    <PopUp
-                        message={''}
-                        buttonLabel={'play'}
-                        onButtonClick={onPlay}
-                    />
-                    <div className="color-button-container">
-                        <button
-                            onClick={() => {
-                                setColor('1')
-                                setPlayer1('Red')
-                                setPlayer2('Pink')
-                            }}
-                            className="app-button"
-                        >
-                            1
+                    <div className="top-wrapper">
+                        <h1 className="app-display-title">Gomuko</h1>
+                    </div>
+                    <div className="pop-up-wrapper">
+                        <button className="app-button" onClick={() => onPlay()}>
+                            play
                         </button>
-                        <button
-                            onClick={() => {
-                                setColor('2')
-                                setPlayer1('Pink')
-                                setPlayer2('Yellow')
-                            }}
-                            className="app-button"
-                        >
-                            2
-                        </button>
-                        <button
-                            onClick={() => {
-                                setColor('3')
-                                setPlayer1('Blue')
-                                setPlayer2('Red')
-                            }}
-                            className="app-button"
-                        >
-                            3
-                        </button>
-                        <button
-                            onClick={() => {
-                                setColor('4')
-                                setPlayer1('Black')
-                                setPlayer2('White')
-                            }}
-                            className="app-button"
-                        >
-                            4
-                        </button>
+                        <div className="color-button-container">
+                            <button
+                                onClick={() => {
+                                    setColor('1')
+                                    setPlayer1('Red')
+                                    setPlayer2('Pink')
+                                }}
+                                className="app-button"
+                            >
+                                1
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setColor('2')
+                                    setPlayer1('Pink')
+                                    setPlayer2('Yellow')
+                                }}
+                                className="app-button"
+                            >
+                                2
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setColor('3')
+                                    setPlayer1('Blue')
+                                    setPlayer2('Red')
+                                }}
+                                className="app-button"
+                            >
+                                3
+                            </button>
+                            <button
+                                onClick={() => {
+                                    setColor('4')
+                                    setPlayer1('Black')
+                                    setPlayer2('White')
+                                }}
+                                className="app-button"
+                            >
+                                4
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}
