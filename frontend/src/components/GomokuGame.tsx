@@ -116,8 +116,8 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame, player1, player2 }) => {
                                     isWinner === -1
                                         ? "It's a Tie! Play again?"
                                         : isWinner === 1
-                                        ? player1 + ', play again?'
-                                        : player2 + ', play again?'
+                                        ? player1 + ' won, play again?'
+                                        : player2 + ' won, play again?'
                                 }
                                 buttonLabel1={'Yes'}
                                 buttonLabel2={'No'}
