@@ -1,5 +1,5 @@
 import { db } from './firebase'
-import { ref, set, get, push, runTransaction, update } from 'firebase/database'
+import { ref, set, get, push } from 'firebase/database'
 import { v4 } from 'uuid'
 
 const gameStateRef = ref(db, 'gameState')
