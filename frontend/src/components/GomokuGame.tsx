@@ -43,28 +43,41 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
             })
     }
 
-    const playerMove = async (row: number, col: number) => {
+    // const playerMove = async (row: number, col: number) => {
         // const data = await makeMove(row, col);
         // setBoardData(data);
         // setCurrentPlayer(data.currentPlayer)
 
 
-        axios
-            .post('http://localhost:3000/api/gomoku/make_move', { row, col })
-            .then((response) => {
-                setBoardData(response.data)
-                setCurrentPlayer(response.data.currentPlayer)
-            })
-            .catch((error) => {
-                console.error(
-                    'Är det här det händer? ' +
-                        'An error occurred while making a move:',
-                    error
-                )
-            })
-        getWinner()
-        getAllWinners()
-    }
+    //     axios
+    //         .post('http://localhost:3000/api/gomoku/make_move', { row, col })
+    //         .then((response) => {
+    //             setBoardData(response.data)
+    //             setCurrentPlayer(response.data.currentPlayer)
+    //         })
+    //         .catch((error) => {
+    //             console.error(
+    //                 'Är det här det händer? ' +
+    //                     'An error occurred while making a move:',
+    //                 error
+    //             )
+    //         })
+    //     getWinner()
+    //     getAllWinners()
+    // }
+
+    const playerMove = async (row: number, col: number) => {
+        try {
+          const response = await axios.post('http://localhost:3000/api/gomoku/make_move', { row, col });
+          setBoardData(response.data);
+          setCurrentPlayer(response.data.currentPlayer);
+          getWinner();
+          getAllWinners();
+        } catch (error) {
+          console.error('An error occurred while making a move:', error);
+        }
+      };
+
 
     const getAllWinners = () => {
         axios
