@@ -18,9 +18,9 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
     const [whiteNumberOfWins, setWhiteNumberOfWins] = useState([])
 
 
-    useEffect(() => {
-        fetchBoardData()
-    }, [])
+    // useEffect(() => {
+    //     fetchBoardData()
+    // }, [])
 
 
 
@@ -146,7 +146,7 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
                         )}
                     </div>
                 </div>
-                {/* <button onClick={()=> fetchBoardData()}>FETCH</button> */}
+                <button onClick={()=> fetchBoardData()}>FETCH</button>
                 {boardData ? (
                     <div>
                         {isWinner ? (

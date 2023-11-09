@@ -12,7 +12,6 @@ export interface GameState {
     rows: number
     tiles: number[][]
     currentPlayer: number
-    gomokuWinner?: number
 }
 
 function createGameState(): GameState {
@@ -29,8 +28,7 @@ function createGameState(): GameState {
 let gameState: GameState = createGameState()
 
 async function playGame(): Promise<GameState> {
-    await set(gameStateRef, createGameState())
-    gameState = createGameState()
+    await set(gameStateRef, gameState)
     return gameState
 }
 
