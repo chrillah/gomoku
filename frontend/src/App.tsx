@@ -25,8 +25,8 @@ function App() {
                     <h1 className="app-display-title">Gomuko</h1>
                     <div className="top-wrapper"></div>
                     <PopUp
-                        message={'Play'}
-                        buttonLabel={'yesbox'}
+                        message={''}
+                        buttonLabel={'play'}
                         onButtonClick={onPlay}
                     />
                     <div className="color-button-container">
