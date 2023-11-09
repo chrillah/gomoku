@@ -6,11 +6,12 @@ interface GomokuTileProps {
 
 const GomokuTile: FC<GomokuTileProps> = ({ player }) => {
     const playerClass =
-        player === 'black'
+        player ===
+        'black'
             ? 'black player'
             : player === 'white'
             ? 'white player'
-            : ''
+            : 'no-player'
 
     return (
         <div className="tile">

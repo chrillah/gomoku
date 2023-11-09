@@ -26,9 +26,8 @@ const GomokuBoard: React.FC<BoardProps> = ({ boardData, makeMove }) => {
             {tiles.map((row, rowIndex) => (
                 <div key={rowIndex} className="gomoku-row">
                     {row.map((tile, colIndex) => (
-                        <div>
+                        <div key={`${rowIndex}-${colIndex}`}>
                             <div
-                                key={colIndex}
                                 onClick={() =>
                                     handleTileClick(rowIndex, colIndex)
                                 }
@@ -48,7 +47,8 @@ const GomokuBoard: React.FC<BoardProps> = ({ boardData, makeMove }) => {
                 </div>
             ))}
         </div>
-    )
+    );
+
 }
 
 export default GomokuBoard

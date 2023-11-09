@@ -3,28 +3,38 @@ import { FC } from 'react'
 import axios from 'axios'
 import GomokuBoard from './GomokuBoard'
 import PopUpChoice from './PopUpChoice'
+import { playGame, makeMove, GameState, handleWinner } from '../GameLogic'
 
 interface GomokuGameProps {
     onQuitGame: () => void
 }
 
 const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
-    const [boardData, setBoardData] = useState(null)
+    const [boardData, setBoardData] = useState <GameState | null>()
     const [isWinner, setIsWinner] = useState<number | null>(null)
     const [winners, setWinners] = useState([])
     const [currentPlayer, setCurrentPlayer] = useState<number | null>(null)
     const [blackNumberOfWins, setBlackNumberOfWins] = useState([])
     const [whiteNumberOfWins, setWhiteNumberOfWins] = useState([])
 
+
     useEffect(() => {
         fetchBoardData()
     }, [])
+
+
+
+
+    // const fetchBoardData = async () => {
+    //     const data = await playGame();
+    //     setBoardData(data);
+    //     setCurrentPlayer(data.currentPlayer)
+    // }
 
     const fetchBoardData = () => {
         axios
             .get('http://localhost:3000/api/gomoku/play')
             .then((response) => {
-                // console.log('fetch new board')
                 setBoardData(response.data)
                 setCurrentPlayer(response.data.currentPlayer)
             })
@@ -33,7 +43,12 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
             })
     }
 
-    const makeMove = (row: number, col: number) => {
+    const playerMove = async (row: number, col: number) => {
+        // const data = await makeMove(row, col);
+        // setBoardData(data);
+        // setCurrentPlayer(data.currentPlayer)
+
+
         axios
             .post('http://localhost:3000/api/gomoku/make_move', { row, col })
             .then((response) => {
@@ -41,7 +56,11 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
                 setCurrentPlayer(response.data.currentPlayer)
             })
             .catch((error) => {
-                console.error('An error occurred while making a move:', error)
+                console.error(
+                    'Är det här det händer? ' +
+                        'An error occurred while making a move:',
+                    error
+                )
             })
         getWinner()
         getAllWinners()
@@ -58,7 +77,9 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
             })
     }
 
-    const getWinner = () => {
+    const getWinner = async () => {
+        // const data = handleWinner()
+        // setIsWinner(await data)
         axios
             .get('http://localhost:3000/api/gomoku/winner')
             .then((response) => {
@@ -92,43 +113,40 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
 
     return (
         <div className="game-wrapper">
-            {/* tennis */}
-            {/* {currentPlayer === 1 ? (
-                <div className="black game-player"></div>
-            ) : (
-                <div className="non-active-black non-active-game-player"></div>
-            )} */}
-
             <div className="gomoku-game-area">
                 <div className="player-turns-wrapper">
-                    {currentPlayer === 1 ? (
-                        <div className="black game-player">
-                            {blackNumberOfWins === 0 ? (
-                                <></>
-                            ) : (
-                                <h1 className="number-of-wins">
-                                    {blackNumberOfWins}
-                                </h1>
-                            )}
-                        </div>
-                    ) : (
-                        <div className="non-active-black non-active-game-player"></div>
-                    )}
-                    {currentPlayer === 2 ? (
-                        <div className="white game-player">
-                            {whiteNumberOfWins === 0 ? (
-                                <></>
-                            ) : (
-                                <h1 className="number-of-wins">
-                                    {whiteNumberOfWins}
-                                </h1>
-                            )}
-                        </div>
-                    ) : (
-                        <div className="non-active-white non-active-game-player"></div>
-                    )}
+                    <div
+                        className={
+                            currentPlayer === 1
+                                ? 'black game-player'
+                                : 'non-active-black non-active-game-player'
+                        }
+                    >
+                        {blackNumberOfWins === 0 ? (
+                            <></>
+                        ) : (
+                            <h1 className="number-of-wins">
+                                {blackNumberOfWins}
+                            </h1>
+                        )}
+                    </div>
+                    <div
+                        className={
+                            currentPlayer === 2
+                                ? 'white game-player'
+                                : 'non-active-white non-active-game-player'
+                        }
+                    >
+                        {whiteNumberOfWins === 0 ? (
+                            <></>
+                        ) : (
+                            <h1 className="number-of-wins">
+                                {whiteNumberOfWins}
+                            </h1>
+                        )}
+                    </div>
                 </div>
-
+                {/* <button onClick={()=> fetchBoardData()}>FETCH</button> */}
                 {boardData ? (
                     <div>
                         {isWinner ? (
@@ -146,23 +164,18 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
                                 onButtonClick2={() => onQuitGame()}
                             />
                         ) : (
-                            <GomokuBoard
-                                boardData={boardData}
-                                makeMove={makeMove}
-                            />
+                            <></>
                         )}
+                        <GomokuBoard
+                            boardData={boardData}
+                            makeMove={playerMove}
+                        />
                     </div>
                 ) : (
                     <p className="loading">Wait</p>
                 )}
-            </div>
 
-            {/* tennis */}
-            {/* {currentPlayer === 2 ? (
-                <div className="white game-player"></div>
-            ) : (
-                <div className="non-active-white non-active-game-player"></div>
-            )} */}
+            </div>
         </div>
     )
 }
