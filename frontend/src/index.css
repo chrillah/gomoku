@@ -37,6 +37,8 @@ body {
     --black-player: var(--red);
     --white-player: var(--pink);
     --primary: var(--red);
+    --box-shadow-color: 255, 0, 0, 0.4;
+    --red-shadow: 255, 0, 0, 0.2;
 }
 
 .change-color-set-2{
@@ -45,6 +47,8 @@ body {
     --primary: #000000;
     --secondary: #F5F5F7;
     --play-bg: var(--secondary);
+    --box-shadow-color: 239, 147, 246, 0.4;
+    --red-shadow: 239, 147, 246, 0.4;
 }
 
 .change-color-set-3{
@@ -53,6 +57,8 @@ body {
     --primary: #000000;
     --secondary: #F3EBE0;
     --play-bg: var(--secondary);
+    --box-shadow-color: 81, 73, 146, 0.4;
+    --red-shadow: 81, 73, 146, 0.4;
 }
 
 .change-color-set-4{
@@ -61,6 +67,8 @@ body {
     --primary: #000000;
     --secondary: #ffffff;
     --play-bg: var(--secondary);
+    --box-shadow-color: 81, 73, 146, 0.4;
+    --red-shadow: 81, 73, 146, 0.4;
 }
 
 @media (min-width: 400px) {
@@ -132,7 +140,7 @@ body {
 }
 
 .start-a-new-game {
-    height: 100vh;
+    min-height: 100vh;
     background-color: var(--play-bg);
     display: grid;
     /* background-size: 100px 100px;

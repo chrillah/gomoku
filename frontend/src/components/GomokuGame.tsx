@@ -9,10 +9,12 @@ import {
 } from '../GameLogic'
 
 interface GomokuGameProps {
+    player1 : string;
+    player2 : string;
     onQuitGame: () => void
 }
 
-const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
+const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame, player1, player2 }) => {
     const [boardData, setBoardData] = useState<GameState | null>()
     const [isWinner, setIsWinner] = useState<number | null>(null)
     const [winners, setWinners] = useState<number[]>([])
@@ -114,8 +116,8 @@ const GomokuGame: FC<GomokuGameProps> = ({ onQuitGame }) => {
                                     isWinner === -1
                                         ? "It's a Tie! Play again?"
                                         : isWinner === 1
-                                        ? 'Red won, play again?'
-                                        : 'Pink won, play again?'
+                                        ? player1 + ', play again?'
+                                        : player2 + ', play again?'
                                 }
                                 buttonLabel1={'Yes'}
                                 buttonLabel2={'No'}
