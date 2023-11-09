@@ -1,17 +1,18 @@
 import { db } from './firebase'
-import { ref, set, get, push } from 'firebase/database'
+import { ref, set, get, push} from 'firebase/database'
 import { v4 } from 'uuid'
 
 const gameStateRef = ref(db, 'gameState')
 const winnersRef = ref(db, 'winners')
 
-export interface GameState {
+export type GameState = {
     id: string
     minInRow: number
     cols: number
     rows: number
     tiles: number[][]
     currentPlayer: number
+    gomokuWinner?: number | null
 }
 
 function createGameState(): GameState {
@@ -21,15 +22,16 @@ function createGameState(): GameState {
         cols: 16,
         rows: 16,
         tiles: Array.from({ length: 16 }, () => Array(16).fill(0)),
-        currentPlayer: 1
+        currentPlayer: 1,
+        gomokuWinner: null
     }
 }
 
-let gameState: GameState = createGameState()
+const gameState: GameState = createGameState()
 
 async function playGame(): Promise<GameState> {
-    await set(gameStateRef, gameState)
-    return gameState
+    await set(gameStateRef, gameState);
+    return gameState;
 }
 
 async function makeMove(row: number, col: number): Promise<GameState> {
@@ -59,39 +61,13 @@ async function makeMove(row: number, col: number): Promise<GameState> {
             updatedGameState.currentPlayer =
                 updatedGameState.currentPlayer === 1 ? 2 : 1
         }
-        await set(gameStateRef, updatedGameState).then(() => {
-            console.log("Uppdateringen lyckades");
-        })
-        .catch((error) => {
-            console.error("Fel vid uppdatering:", error);
-        });
+
+        await set(gameStateRef, updatedGameState)
         await push(winnersRef, updatedGameState.gomokuWinner)
         return updatedGameState
     } else {
         throw new Error('Invalid move. Please try again.')
     }
-}
-let gomokuWinner: number | null = null
-const winners: number[] = []
-
-async function handleWinner(): Promise<number | null> {
-    if (gomokuWinner) {
-        console.log('körs')
-        winners.push(gomokuWinner)
-        gomokuWinner = null
-        gameState = {
-            id: v4(),
-            minInRow: 5,
-            cols: 16,
-            rows: 16,
-            tiles: Array.from({ length: 16 }, () => Array(16).fill(0)),
-            currentPlayer: 1
-        }
-    }
-    gomokuWinner = null
-    await set(gameStateRef, gameState)
-    await push(winnersRef, gomokuWinner)
-    return gomokuWinner
 }
 
 function checkForWinner(board: number[][], minInRow: number): number {
@@ -155,4 +131,5 @@ function isTie(board: number[][]): boolean {
     return true
 }
 
-export { playGame, handleWinner, makeMove, GameState }
+// eslint-disable-next-line react-refresh/only-export-components
+export { playGame, makeMove, GameState }
