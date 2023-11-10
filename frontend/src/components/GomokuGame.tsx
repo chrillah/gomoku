@@ -2,10 +2,10 @@ import { useEffect, useState } from 'react'
 import { FC } from 'react'
 import GomokuBoard from './GomokuBoard'
 import PopUpChoice from './PopUpChoice'
+import { GameState } from '../GameState'
 import {
     playGame,
-    makeMove,
-    GameState
+    makeMove
 } from '../GameLogic'
 
 interface GomokuGameProps {

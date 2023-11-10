@@ -1,19 +1,10 @@
 import { db } from './firebase'
 import { ref, set, get, push} from 'firebase/database'
 import { v4 } from 'uuid'
+import { GameState } from './GameState'
 
 const gameStateRef = ref(db, 'gameState')
 const winnersRef = ref(db, 'winners')
-
-export type GameState = {
-    id: string
-    minInRow: number
-    cols: number
-    rows: number
-    tiles: number[][]
-    currentPlayer: number
-    gomokuWinner?: number | null
-}
 
 function createGameState(): GameState {
     return {
@@ -131,5 +122,4 @@ function isTie(board: number[][]): boolean {
     return true
 }
 
-// eslint-disable-next-line react-refresh/only-export-components
-export { playGame, makeMove, GameState }
+export { playGame, makeMove}
