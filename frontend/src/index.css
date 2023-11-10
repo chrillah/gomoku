@@ -71,30 +71,19 @@ body {
     --red-shadow: 81, 73, 146, 0.4;
 }
 
-@media (min-width: 400px) {
+/* @media (min-width: 400px) {
     body {
-        --player-tile-size: 20px;
+        --player-tile-size: 5px;
     }
-}
+} */
 
-@media (min-width: 500px) {
-    body {
-        --player-tile-size: 30px;
-    }
-}
-
-@media (min-width: 1000px) {
-    body {
-        --player-tile-size: 40px;
-    }
-}
 
 .app-display-title {
     margin: 0 auto;
 
     font-family: var(--display-font);
     color: var(--primary);
-    font-size: 10rem;
+    font-size: 5rem;
     word-wrap: break-word;
 }
 
@@ -106,19 +95,19 @@ body {
 
 @media (min-width: 940px) {
     .app-display-title {
-        font-size: 15rem;
+        font-size: 8rem;
     }
 }
 
 @media (min-width: 1200px) {
     .app-display-title {
-        font-size: 20rem;
+        font-size: 10rem;
     }
 }
 
 @media (min-width: 1600px) {
     .app-display-title {
-        font-size: 25rem;
+        font-size: 15rem;
     }
 }
 
@@ -243,23 +232,25 @@ body {
     margin-bottom: 2rem;
 }
 
-@media (min-width: 400px) {
+
+@media (min-width: 600px) {
+    body {
+        --player-tile-size: 20px;
+    }
     .player-turns-wrapper {
         max-width: 320px;
     }
 }
 
-@media (min-width: 500px) {
+@media (min-width: 1200px) {
+    body {
+        --player-tile-size: 20px;
+    }
     .player-turns-wrapper {
-        max-width: 480px;
+        max-width: 320px;
     }
 }
 
-@media (min-width: 1000px) {
-    .player-turns-wrapper {
-        max-width: 650px;
-    }
-}
 
 .number-of-wins {
     font-family: var(--app-font);
@@ -339,13 +330,13 @@ body {
 .button-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    gap: .5rem;
 }
 
 .color-button-container{
-    padding-top: 2rem;
+    padding-top: .5rem;
     display: grid;
-    gap: 1rem;
+    gap: .5rem;
     grid-template-columns: repeat(4, auto);
     height: 10px;
     margin: 0 auto;
@@ -358,9 +349,9 @@ body {
     font-family: var(--app-font);
     color: var(--primary);
     font-weight: bolder;
-    border: 5px solid var(--primary);
+    border: 2px solid var(--primary);
     border-radius: 100px;
-    padding: 1rem 0;
+    padding: .5rem 0;
     transition: all ease-in-out 200ms;
     background-color: var(--secondary);
 }
@@ -385,7 +376,7 @@ body {
     border-radius: var(--app-border-radius);
     position: absolute;
     z-index: 999;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: var(--secondary);
