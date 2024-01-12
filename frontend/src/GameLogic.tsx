@@ -1,5 +1,5 @@
 import { db } from './firebase'
-import { ref, set, get, push} from 'firebase/database'
+import { ref, set, get, push } from 'firebase/database'
 import { v4 } from 'uuid'
 import { GameState } from './GameState'
 
@@ -21,8 +21,8 @@ function createGameState(): GameState {
 const gameState: GameState = createGameState()
 
 async function playGame(): Promise<GameState> {
-    await set(gameStateRef, gameState);
-    return gameState;
+    await set(gameStateRef, gameState)
+    return gameState
 }
 
 async function makeMove(row: number, col: number): Promise<GameState> {
@@ -122,4 +122,4 @@ function isTie(board: number[][]): boolean {
     return true
 }
 
-export { playGame, makeMove}
+export { playGame, makeMove }
