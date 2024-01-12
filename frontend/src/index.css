@@ -256,7 +256,7 @@ body {
     font-family: var(--app-font);
     font-weight: 900;
     color: var(--white);
-    font-size: 2rem;
+    font-size: 1.3rem;
 }
 
 .red {
